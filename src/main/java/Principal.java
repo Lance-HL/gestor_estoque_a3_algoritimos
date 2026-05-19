@@ -698,6 +698,46 @@ public class Principal {
             RETORNO = JOptionPane.showInputDialog(LISTA);
         } //caso o input seja "0", o loop encerra e retorna para a tela 1.4.
     }
+    
+    public static void RelatorioListaPrecos() { //sub-rotina responsável pela tela de lista de preços.
+        String[][] PRODUTOS = { //tabela de produtos com nome, unidade e preço.
+            {"AXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
+            {"BXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
+            {"CXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
+            {"DXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
+            {"EXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"}
+        };
+        String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "LISTA DE PREÇOS<br><br>"
+                + "<table border='0'>"
+                + "<tr>"
+                + "<td><b>PRODUTO</b></td>"
+                + "<td>&nbsp;&nbsp;</td>"
+                + "<td><b>UND</b></td>"
+                + "<td>&nbsp;&nbsp;</td>"
+                + "<td><b>PREÇO</b></td>"
+                + "</tr>";
+        for (String[] PRODUTO : PRODUTOS) { //percorre a tabela de produtos montando as linhas da lista.
+            double PRECO = Double.parseDouble(PRODUTO[2]); //converte o preço para double.
+            LISTA += "<tr>"
+                + "<td>" + PRODUTO[0] + "</td>"
+                + "<td>&nbsp;&nbsp;</td>"
+                + "<td>" + PRODUTO[1] + "</td>"
+                + "<td>&nbsp;&nbsp;</td>"
+                + "<td>" + String.format("%.2f", PRECO) + "</td>"
+                + "</tr>";
+        }
+        LISTA += "</table><br>" //finaliza a tabela e adiciona instrução para retornar.
+                + "Digite 0 para retornar."
+                + "</div></html>";
+        String RETORNO = JOptionPane.showInputDialog(LISTA); //exibe a lista e aguarda o input do usuário para retornar.
+        while (!RETORNO.equals("0")) { //enquanto o input não for 0, exibe a lista novamente.
+            RETORNO = JOptionPane.showInputDialog(LISTA);
+        } //caso o input seja "0", o loop encerra e retorna para a tela 1.4.
+    }
+    
     public static void ConsultaProduto() { //sub-rotina responsável pela tela de consulta de produto.
         String NOVACONSULTA = "S"; //atribui "S" para que o loop inicie automaticamente.
         while (NOVACONSULTA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas consultas.
