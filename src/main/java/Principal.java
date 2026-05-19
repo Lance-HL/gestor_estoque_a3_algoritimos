@@ -61,10 +61,10 @@ public class Principal {
         );
         return Integer.parseInt(MENUMOVIMENTAÇÃO);
     }
-    public static void EntradaProduto() {
-        String CONFIRMAENTRADA = "S";
-        while (CONFIRMAENTRADA.equalsIgnoreCase("S")) {
-            String NOMEPRODUTO = JOptionPane.showInputDialog(
+    public static void EntradaProduto() { //sub-rotina responsável pela tela de entrada de produto.
+        String CONFIRMAENTRADA = "S"; //atribui "S" para que o loop inicie automaticamente.
+        while (CONFIRMAENTRADA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas entradas.
+            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
                 "<html><div style='text-align: center;'>"
                 + "SEX ON THE BAR LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
@@ -74,7 +74,7 @@ public class Principal {
                 + "PRODUTO:"
                 + "</div></html>"
             );
-            String QTDEATUALSTR = JOptionPane.showInputDialog(
+            String QTDEATUALSTR = JOptionPane.showInputDialog( //segundo input: solicita a quantidade atual do produto.
                 "<html><div style='text-align: center;'>"
                 + "SEX ON THE BAR LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
@@ -85,8 +85,8 @@ public class Principal {
                 + "QTDE ATUAL:"
                 + "</div></html>"
             );
-            int QTDEATUAL = Integer.parseInt(QTDEATUALSTR);
-            String QTDEENTRADASTR = JOptionPane.showInputDialog(
+            int QTDEATUAL = Integer.parseInt(QTDEATUALSTR); //converte a String da quantidade atual para inteiro.
+            String QTDEENTRADASTR = JOptionPane.showInputDialog( //terceiro input: solicita a quantidade de entrada.
                 "<html><div style='text-align: center;'>"
                 + "SEX ON THE BAR LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
@@ -98,9 +98,9 @@ public class Principal {
                 + "QTDE ENTRADA:"
                 + "</div></html>"
             );
-            int QTDEENTRADA = Integer.parseInt(QTDEENTRADASTR);
-            int QTDEFINAL = QTDEATUAL + QTDEENTRADA;
-            String CONFIRMA = JOptionPane.showInputDialog(
+            int QTDEENTRADA = Integer.parseInt(QTDEENTRADASTR); //converte a String da quantidade de entrada para inteiro.
+            int QTDEFINAL = QTDEATUAL + QTDEENTRADA; //calcula a quantidade final somando atual com entrada.
+            String CONFIRMA = JOptionPane.showInputDialog( //quarto input: exibe o resumo e solicita confirmação da entrada.
                 "<html><div style='text-align: center;'>"
                 + "SEX ON THE BAR LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
@@ -114,8 +114,8 @@ public class Principal {
                 + "CONFIRMA ENTRADA (S/N)?:"
                 + "</div></html>"
             );
-            if (CONFIRMA.equalsIgnoreCase("S")) {
-                CONFIRMAENTRADA = JOptionPane.showInputDialog(
+            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova entrada.
+                CONFIRMAENTRADA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova entrada.
                     "<html><div style='text-align: center;'>"
                     + "SEX ON THE BAR LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
@@ -126,8 +126,8 @@ public class Principal {
                     + "NOVA ENTRADA (S/N)?:"
                     + "</div></html>"
                 );
-            } else {
-                CONFIRMAENTRADA = JOptionPane.showInputDialog(
+            } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova entrada.
+                CONFIRMAENTRADA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova entrada.
                     "<html><div style='text-align: center;'>"
                     + "SEX ON THE BAR LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
@@ -139,6 +139,86 @@ public class Principal {
                     + "</div></html>"
                 );
             }
-        }
+        } //caso o input seja "N" em nova entrada, o loop encerra e retorna para a tela 1.2.
+    }
+    public static void SaidaProduto() { //sub-rotina responsável pela tela de saída de produto.
+        String CONFIRMASAIDA = "S"; //atribui "S" para que o loop inicie automaticamente.
+        while (CONFIRMASAIDA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas saídas.
+            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "PRODUTO:"
+                + "</div></html>"
+            );
+            String QTDEATUALSTR = JOptionPane.showInputDialog( //segundo input: solicita a quantidade atual do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "PRODUTO    : " + NOMEPRODUTO + "<br><br>"
+                + "QTDE ATUAL:"
+                + "</div></html>"
+            );
+            int QTDEATUAL = Integer.parseInt(QTDEATUALSTR); //converte a String da quantidade atual para inteiro.
+            String QTDESAIDASTR = JOptionPane.showInputDialog( //terceiro input: solicita a quantidade de saída.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                + "QTDE ATUAL : " + QTDEATUAL + "<br><br>"
+                + "QTDE SAÍDA:"
+                + "</div></html>"
+            );
+            int QTDESAIDA = Integer.parseInt(QTDESAIDASTR); //converte a String da quantidade de saída para inteiro.
+            int QTDEFINAL = QTDEATUAL - QTDESAIDA; //calcula a quantidade final subtraindo a saída da atual.
+            String CONFIRMA = JOptionPane.showInputDialog( //quarto input: exibe o resumo e solicita confirmação da saída.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                + "QTDE ATUAL : " + QTDEATUAL + "<br>"
+                + "QTDE SAÍDA : " + QTDESAIDA + "<br>"
+                + "QTDE FINAL : " + QTDEFINAL + "<br><br>"
+                + "CONFIRMA SAÍDA (S/N)?:"
+                + "</div></html>"
+            );
+            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova saída.
+                CONFIRMASAIDA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova saída.
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "SAÍDA CONFIRMADA COM SUCESSO!<br><br>"
+                    + "NOVA SAÍDA (S/N)?:"
+                    + "</div></html>"
+                );
+            } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova saída.
+                CONFIRMASAIDA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova saída.
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "SAÍDA CANCELADA.<br><br>"
+                    + "NOVA SAÍDA (S/N)?:"
+                    + "</div></html>"
+                );
+            }
+        } //caso o input seja "N" em nova saída, o loop encerra e retorna para a tela 1.2.
     }
 }
