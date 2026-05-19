@@ -332,4 +332,96 @@ public class Principal {
             }
         } //caso o input seja "N" em novo reajuste, o loop encerra e retorna para a tela 1.0.
     }
+    public static void ExclusaoProduto() { //sub-rotina responsável pela tela de exclusão de produto.
+        String NOVAEXCLUSAO = "S"; //atribui "S" para que o loop inicie automaticamente.
+        while (NOVAEXCLUSAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas exclusões.
+            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "EXCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME:"
+                + "</div></html>"
+            );
+            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "EXCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME     : " + NOMEPRODUTO + "<br><br>"
+                + "PREÇO:"
+                + "</div></html>"
+            );
+            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
+            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "EXCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME     : " + NOMEPRODUTO + "<br>"
+                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
+                + "UNIDADE:"
+                + "</div></html>"
+            );
+            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "EXCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME     : " + NOMEPRODUTO + "<br>"
+                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                + "UNIDADE  : " + UNIDADE + "<br><br>"
+                + "QUANTIDADE:"
+                + "</div></html>"
+            );
+            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
+            String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da exclusão.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "EXCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME       : " + NOMEPRODUTO + "<br>"
+                + "PREÇO      : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                + "UNIDADE    : " + UNIDADE + "<br>"
+                + "QUANTIDADE : " + QTDEPRODUTO + "<br><br>"
+                + "CONFIRMA EXCLUSÃO (S/N)?:"
+                + "</div></html>"
+            );
+            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova exclusão.
+                NOVAEXCLUSAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova exclusão.
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "EXCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "EXCLUSÃO CONFIRMADA COM SUCESSO!<br><br>"
+                    + "NOVA EXCLUSÃO (S/N)?:"
+                    + "</div></html>"
+                );
+            } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova exclusão.
+                NOVAEXCLUSAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova exclusão.
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "EXCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "EXCLUSÃO CANCELADA.<br><br>"
+                    + "NOVA EXCLUSÃO (S/N)?:"
+                    + "</div></html>"
+                );
+            }
+        } //caso o input seja "N" em nova exclusão, o loop encerra e retorna para a tela 1.1.
+    }
 }
