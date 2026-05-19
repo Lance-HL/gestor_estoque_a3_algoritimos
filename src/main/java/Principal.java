@@ -53,6 +53,9 @@ public class Principal {
             if (MENUCADASTRO == 2) { //caso o input seja 2 no MenuCadastro, irá para a sub-rotina AlteracaoProduto (tela 1.1.2).
                 AlteracaoProduto();
             }
+            if (MENUCADASTRO == 3) { //caso o input seja 3 no MenuCadastro, irá para a sub-rotina ConsultaProduto (tela 1.1.3).
+                ConsultaProduto();
+            }
             if (MENUCADASTRO == 4) { //caso o input seja 4 no MenuCadastro, irá para a sub-rotina ExclusaoProduto.
                 ExclusaoProduto();
             }
@@ -694,5 +697,72 @@ public class Principal {
         while (!RETORNO.equals("0")) { //enquanto o input não for 0, exibe a lista novamente.
             RETORNO = JOptionPane.showInputDialog(LISTA);
         } //caso o input seja "0", o loop encerra e retorna para a tela 1.4.
+    }
+    public static void ConsultaProduto() { //sub-rotina responsável pela tela de consulta de produto.
+        String NOVACONSULTA = "S"; //atribui "S" para que o loop inicie automaticamente.
+        while (NOVACONSULTA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas consultas.
+            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "CONSULTA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME:"
+                + "</div></html>"
+            );
+            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "CONSULTA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME     : " + NOMEPRODUTO + "<br><br>"
+                + "PREÇO:"
+                + "</div></html>"
+            );
+            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
+            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "CONSULTA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME     : " + NOMEPRODUTO + "<br>"
+                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
+                + "UNIDADE:"
+                + "</div></html>"
+            );
+            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "CONSULTA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME     : " + NOMEPRODUTO + "<br>"
+                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                + "UNIDADE  : " + UNIDADE + "<br><br>"
+                + "QUANTIDADE:"
+                + "</div></html>"
+            );
+            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
+            NOVACONSULTA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova consulta.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "CONSULTA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME       : " + NOMEPRODUTO + "<br>"
+                + "PREÇO      : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                + "UNIDADE    : " + UNIDADE + "<br>"
+                + "QUANTIDADE : " + QTDEPRODUTO + "<br><br>"
+                + "NOVA CONSULTA (S/N)?:"
+                + "</div></html>"
+            );
+        } //caso o input seja "N", o loop encerra e retorna para a tela 1.1.
     }
 }
