@@ -30,21 +30,31 @@ public class Principal {
         return Integer.parseInt(MENUPRINCIPAL); //devolve o valor em Int da String MENUPRINCIPAL para que abra possibilidade pra um novo redirecionamento.
     }
     public static int MenuCadastro() {
-        String MENUCADASTRO = JOptionPane.showInputDialog(
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "CADASTRO DE PRODUTOS"
-                + "</div><br>"
-                + "<div style='text-align: justify;'>"
-                + "1 - INCLUSÃO<br>"
-                + "2 - ALTERAÇÃO<br>"
-                + "3 - CONSULTA<br>"
-                + "4 - EXCLUSÃO<br>"
-                + "0 - RETORNAR<br><br>"
-                + "</div></html>"
-        );
-        return Integer.parseInt(MENUCADASTRO);
+        int MENUCADASTRO = -1; //atribui -1 para que o loop inicie e permita retorno correto ao menu principal.
+        while (MENUCADASTRO != 0) { //enquanto o input não for 0, o loop mantém a tela de cadastro.
+            String INPUT = JOptionPane.showInputDialog(
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "CADASTRO DE PRODUTOS"
+                    + "</div><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "1 - INCLUSÃO<br>"
+                    + "2 - ALTERAÇÃO<br>"
+                    + "3 - CONSULTA<br>"
+                    + "4 - EXCLUSÃO<br>"
+                    + "0 - RETORNAR<br><br>"
+                    + "</div></html>"
+            );
+            MENUCADASTRO = Integer.parseInt(INPUT);
+            if (MENUCADASTRO == 1) { //caso o input seja 1 no MenuCadastro, irá para a sub-rotina InclusaoProduto (tela 1.1.1).
+                InclusaoProduto();
+            }
+            if (MENUCADASTRO == 4) { //caso o input seja 4 no MenuCadastro, irá para a sub-rotina ExclusaoProduto.
+                ExclusaoProduto();
+            }
+        }
+        return MENUCADASTRO; //retorna 0 para voltar ao menu principal.
     }
     public static int MenuMovimentacao() {
         String MENUMOVIMENTAÇÃO = JOptionPane.showInputDialog(
@@ -60,6 +70,108 @@ public class Principal {
                 + "</div></html>"
         );
         return Integer.parseInt(MENUMOVIMENTAÇÃO);
+    }
+    public static void InclusaoProduto() { //sub-rotina responsável pela tela de inclusão de produto (tela 1.1.1).
+        String NOVAALTERACAO = "S"; //atribui "S" para que o loop inicie automaticamente.
+        while (NOVAALTERACAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas inclusões ou alterações.
+            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
+                "<html><div style='text-align: center;'>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "INCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                + "</div></html>"
+            );
+            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
+                "<html><div style='text-align: center;'>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "INCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br><br>"
+                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                + "</div></html>"
+            );
+            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
+            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
+                "<html><div style='text-align: center;'>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "INCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
+                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                + "</div></html>"
+            );
+            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
+                "<html><div style='text-align: center;'>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "INCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br><br>"
+                + "QUANTIDADE&nbsp;&nbsp;&nbsp;:"
+                + "</div></html>"
+            );
+            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
+            String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da inclusão.
+                "<html><div style='text-align: center;'>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "INCLUSÃO DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                + "CONFIRMA INCLUSÃO ( S/N ) ?&nbsp;"
+                + "</div></html>"
+            );
+            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", confirma a inclusão e pergunta se deseja nova alteração.
+                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração/inclusão.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "INCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                    + "CONFIRMA INCLUSÃO ( S/N ) ? S<br><br>"
+                    + "INCLUSÃO CONFIRMADA COM SUCESSO!<br><br>"
+                    + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
+                    + "</div></html>"
+                );
+            } else { //caso o input seja "N", cancela a inclusão e pergunta se deseja nova alteração.
+                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração/inclusão.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "INCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                    + "CONFIRMA INCLUSÃO ( S/N ) ? N<br><br>"
+                    + "INCLUSÃO CANCELADA.<br><br>"
+                    + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
+                    + "</div></html>"
+                );
+            }
+        } //caso o input seja "N" em nova alteração, o loop encerra e retorna para a tela 1.1 (MenuCadastro).
     }
     public static void EntradaProduto() { //sub-rotina responsável pela tela de entrada de produto.
         String CONFIRMAENTRADA = "S"; //atribui "S" para que o loop inicie automaticamente.
@@ -471,44 +583,6 @@ public class Principal {
         LISTA += "</table><br>" //finaliza a tabela e adiciona o rodapé com os totais.
                 + "TOTAL DE ITENS NO ESTOQUE : " + TOTALITENS + "<br>"
                 + "VALOR TOTAL DO ESTOQUE    : " + String.format("%.2f", VALORTOTAL) + "<br><br>"
-                + "Digite 0 para retornar."
-                + "</div></html>";
-        String RETORNO = JOptionPane.showInputDialog(LISTA); //exibe a lista e aguarda o input do usuário para retornar.
-        while (!RETORNO.equals("0")) { //enquanto o input não for 0, exibe a lista novamente.
-            RETORNO = JOptionPane.showInputDialog(LISTA);
-        } //caso o input seja "0", o loop encerra e retorna para a tela 1.4.
-    }
-    public static void RelatorioListaPrecos() { //sub-rotina responsável pela tela de lista de preços.
-        String[][] PRODUTOS = { //tabela de produtos com nome, unidade e preço.
-            {"AXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
-            {"BXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
-            {"CXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
-            {"DXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
-            {"EXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"}
-        };
-        String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "LISTA DE PREÇOS<br><br>"
-                + "<table border='0'>"
-                + "<tr>"
-                + "<td><b>PRODUTO</b></td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td><b>UND</b></td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td><b>PREÇO</b></td>"
-                + "</tr>";
-        for (String[] PRODUTO : PRODUTOS) { //percorre a tabela de produtos montando as linhas da lista.
-            double PRECO = Double.parseDouble(PRODUTO[2]); //converte o preço para double.
-            LISTA += "<tr>"
-                + "<td>" + PRODUTO[0] + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + PRODUTO[1] + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + String.format("%.2f", PRECO) + "</td>"
-                + "</tr>";
-        }
-        LISTA += "</table><br>" //finaliza a tabela e adiciona instrução para retornar.
                 + "Digite 0 para retornar."
                 + "</div></html>";
         String RETORNO = JOptionPane.showInputDialog(LISTA); //exibe a lista e aguarda o input do usuário para retornar.
