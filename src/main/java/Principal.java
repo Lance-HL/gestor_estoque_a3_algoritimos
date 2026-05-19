@@ -221,4 +221,115 @@ public class Principal {
             }
         } //caso o input seja "N" em nova saída, o loop encerra e retorna para a tela 1.2.
     }
+    public static void ReajustePrecos() { //sub-rotina responsável pela tela de reajuste de preços.
+        String NOVOREAJUSTE = "S"; //atribui "S" para que o loop inicie automaticamente.
+        while (NOVOREAJUSTE.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novos reajustes.
+            String TIPOREAJUSTE = JOptionPane.showInputDialog( //primeiro input: solicita se o reajuste será geral ou de um produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "REAJUSTE DE PREÇOS"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "REAJUSTE GERAL OU DE UM PRODUTO?<br><br>"
+                + "1 - GERAL<br>"
+                + "2 - UM PRODUTO<br>"
+                + "</div></html>"
+            );
+            String NOMEPRODUTO = JOptionPane.showInputDialog( //segundo input: solicita o nome do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "REAJUSTE DE PREÇOS"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br><br>"
+                + "PRODUTO:"
+                + "</div></html>"
+            );
+            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "REAJUSTE DE PREÇOS"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
+                + "PRODUTO  : " + NOMEPRODUTO + "<br><br>"
+                + "UNIDADE:"
+                + "</div></html>"
+            );
+            String PRECOATUALSTR = JOptionPane.showInputDialog( //quarto input: solicita o preço atual do produto.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "REAJUSTE DE PREÇOS"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
+                + "PRODUTO  : " + NOMEPRODUTO + "<br>"
+                + "UNIDADE  : " + UNIDADE + "<br><br>"
+                + "PREÇO ATUAL:"
+                + "</div></html>"
+            );
+            double PRECOATUAL = Double.parseDouble(PRECOATUALSTR.replace(",", ".")); //converte a String do preço atual para double, aceitando vírgula ou ponto.
+            String PERCENTUALSTR = JOptionPane.showInputDialog( //quinto input: solicita o percentual de reajuste.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "REAJUSTE DE PREÇOS"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "REAJUSTE   : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
+                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                + "UNIDADE    : " + UNIDADE + "<br>"
+                + "PREÇO ATUAL: " + PRECOATUALSTR + "<br><br>"
+                + "PERCENTUAL DE REAJUSTE:"
+                + "</div></html>"
+            );
+            double PERCENTUAL = Double.parseDouble(PERCENTUALSTR.replace(",", ".")); //converte a String do percentual para double, aceitando vírgula ou ponto.
+            double PRECOFINAL = PRECOATUAL + (PRECOATUAL * PERCENTUAL / 100); //calcula o preço final aplicando o percentual de reajuste.
+            String CONFIRMAREAJUSTE = JOptionPane.showInputDialog( //sexto input: exibe o resumo e solicita confirmação do reajuste.
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "REAJUSTE DE PREÇOS"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "REAJUSTE   : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
+                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                + "UNIDADE    : " + UNIDADE + "<br>"
+                + "PREÇO ATUAL: " + String.format("%.2f", PRECOATUAL) + "<br>"
+                + "PERCENTUAL : " + String.format("%.2f", PERCENTUAL) + "%<br>"
+                + "PREÇO FINAL: " + String.format("%.2f", PRECOFINAL) + "<br><br>"
+                + "CONFIRMA REAJUSTE (S/N)?:"
+                + "</div></html>"
+            );
+            if (CONFIRMAREAJUSTE.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja novo reajuste.
+                NOVOREAJUSTE = JOptionPane.showInputDialog( //sétimo input: pergunta se deseja fazer um novo reajuste.
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "REAJUSTE DE PREÇOS"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "REAJUSTE CONFIRMADO COM SUCESSO!<br><br>"
+                    + "NOVO REAJUSTE (S/N)?:"
+                    + "</div></html>"
+                );
+            } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja novo reajuste.
+                NOVOREAJUSTE = JOptionPane.showInputDialog( //sétimo input: pergunta se deseja fazer um novo reajuste.
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "REAJUSTE DE PREÇOS"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "REAJUSTE CANCELADO.<br><br>"
+                    + "NOVO REAJUSTE (S/N)?:"
+                    + "</div></html>"
+                );
+            }
+        } //caso o input seja "N" em novo reajuste, o loop encerra e retorna para a tela 1.0.
+    }
 }
