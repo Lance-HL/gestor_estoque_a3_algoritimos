@@ -1,26 +1,17 @@
-
 import javax.swing.JOptionPane;
-
 public class Principal {
-
     public static void main(String[] args) {
-
         int MENUPP = -1; //atribui um valor á varivel -1 pra ela poder ser utilizada no loop (estou usando loop para a gente conseguir voltar para esse menu depois).
-
         while (MENUPP != 0) { //enquanto o inout não for 0, o loop vai continuar mantendo a tela do menu principal.
-
             MENUPP = MenuPrincipal(); //estabelece a sub-rotina MenuPrincipal como padrão para a variável MENUPP
-
             if (MENUPP == 1) { //caso o inout seja 1 no MenuPrincipal, irá para a sub-rotina MenuCadastro.
                 MenuCadastro();
             }
             if (MENUPP == 2) { //caso o inout seja 2 no MenuPrincipal, irá para a sub-rotina MenuMovimentacao.
                 MenuMovimentacao();
             }
-
         }
     }
-
     public static int MenuPrincipal() {
         String MENUPRINCIPAL = JOptionPane.showInputDialog(
                 "<html><div style='text-align: center;'>" //isso é só pra centralizar o texto usando html básico.
@@ -28,7 +19,6 @@ public class Principal {
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MENU PRINCIPAL"
                 + "<div><br>" //o </div> significa que é o fim dos textos
-
                 + "<div style='text-align: justify;'>" //isso muda a formatação do texto para Justificar ao invés de Centralizar.
                 + "1 - CADASTRO DE PRODUTO<br>"
                 + "2 - MOVIMENTAÇÃO<br>"
@@ -39,7 +29,6 @@ public class Principal {
         );
         return Integer.parseInt(MENUPRINCIPAL); //devolve o valor em Int da String MENUPRINCIPAL para que abra possibilidade pra um novo redirecionamento.
     }
-
     public static int MenuCadastro() {
         String MENUCADASTRO = JOptionPane.showInputDialog(
                 "<html><div style='text-align: center;'>"
@@ -57,7 +46,6 @@ public class Principal {
         );
         return Integer.parseInt(MENUCADASTRO);
     }
-
     public static int MenuMovimentacao() {
         String MENUMOVIMENTAÇÃO = JOptionPane.showInputDialog(
                 "<html><div style='text-align: center;'>"
@@ -73,5 +61,84 @@ public class Principal {
         );
         return Integer.parseInt(MENUMOVIMENTAÇÃO);
     }
-
+    public static void EntradaProduto() {
+        String CONFIRMAENTRADA = "S";
+        while (CONFIRMAENTRADA.equalsIgnoreCase("S")) {
+            String NOMEPRODUTO = JOptionPane.showInputDialog(
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "PRODUTO:"
+                + "</div></html>"
+            );
+            String QTDEATUALSTR = JOptionPane.showInputDialog(
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "PRODUTO    : " + NOMEPRODUTO + "<br><br>"
+                + "QTDE ATUAL:"
+                + "</div></html>"
+            );
+            int QTDEATUAL = Integer.parseInt(QTDEATUALSTR);
+            String QTDEENTRADASTR = JOptionPane.showInputDialog(
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                + "QTDE ATUAL : " + QTDEATUAL + "<br><br>"
+                + "QTDE ENTRADA:"
+                + "</div></html>"
+            );
+            int QTDEENTRADA = Integer.parseInt(QTDEENTRADASTR);
+            int QTDEFINAL = QTDEATUAL + QTDEENTRADA;
+            String CONFIRMA = JOptionPane.showInputDialog(
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                + "</div><br><br>"
+                + "<div style='text-align: justify;'>"
+                + "PRODUTO      : " + NOMEPRODUTO + "<br>"
+                + "QTDE ATUAL   : " + QTDEATUAL + "<br>"
+                + "QTDE ENTRADA : " + QTDEENTRADA + "<br>"
+                + "QTDE FINAL   : " + QTDEFINAL + "<br><br>"
+                + "CONFIRMA ENTRADA (S/N)?:"
+                + "</div></html>"
+            );
+            if (CONFIRMA.equalsIgnoreCase("S")) {
+                CONFIRMAENTRADA = JOptionPane.showInputDialog(
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "ENTRADA CONFIRMADA COM SUCESSO!<br><br>"
+                    + "NOVA ENTRADA (S/N)?:"
+                    + "</div></html>"
+                );
+            } else {
+                CONFIRMAENTRADA = JOptionPane.showInputDialog(
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "ENTRADA CANCELADA.<br><br>"
+                    + "NOVA ENTRADA (S/N)?:"
+                    + "</div></html>"
+                );
+            }
+        }
+    }
 }
