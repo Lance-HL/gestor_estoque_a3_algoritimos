@@ -10,6 +10,9 @@ public class Principal {
             if (MENUPP == 2) { //caso o inout seja 2 no MenuPrincipal, irá para a sub-rotina MenuMovimentacao.
                 MenuMovimentacao();
             }
+            if (MENUPP == 4) { //caso o input seja 4 no MenuPrincipal, irá para a sub-rotina MenuRelatorios.
+                MenuRelatorios();
+            }
         }
     }
     public static int MenuPrincipal() {
