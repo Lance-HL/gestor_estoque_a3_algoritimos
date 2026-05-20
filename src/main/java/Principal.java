@@ -698,7 +698,6 @@ public class Principal {
             RETORNO = JOptionPane.showInputDialog(LISTA);
         } //caso o input seja "0", o loop encerra e retorna para a tela 1.4.
     }
-    
     public static void RelatorioListaPrecos() { //sub-rotina responsável pela tela de lista de preços.
         String[][] PRODUTOS = { //tabela de produtos com nome, unidade e preço.
             {"AXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
@@ -737,7 +736,6 @@ public class Principal {
             RETORNO = JOptionPane.showInputDialog(LISTA);
         } //caso o input seja "0", o loop encerra e retorna para a tela 1.4.
     }
-    
     public static void ConsultaProduto() { //sub-rotina responsável pela tela de consulta de produto.
         String NOVACONSULTA = "S"; //atribui "S" para que o loop inicie automaticamente.
         while (NOVACONSULTA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas consultas.
@@ -804,5 +802,30 @@ public class Principal {
                 + "</div></html>"
             );
         } //caso o input seja "N", o loop encerra e retorna para a tela 1.1.
+    }
+    public static int MenuRelatorios() { //sub-rotina responsável pelo menu de relatórios (tela 1.4).
+        int MENUREL = -1; //atribui -1 para que o loop inicie e permita retorno correto ao menu principal.
+        while (MENUREL != 0) { //enquanto o input não for 0, o loop mantém a tela de relatórios.
+            String INPUT = JOptionPane.showInputDialog(
+                "<html><div style='text-align: center;'>"
+                + "SEX ON THE BAR LTDA<br>"
+                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                + "RELATÓRIOS"
+                + "</div><br>"
+                + "<div style='text-align: justify;'>"
+                + "1 - LISTA DE PREÇOS<br>"
+                + "2 - BALANÇO FÍSICO-FINANCEIRO<br>"
+                + "0 - RETORNAR<br><br>"
+                + "</div></html>"
+            );
+            MENUREL = Integer.parseInt(INPUT);
+            if (MENUREL == 1) { //caso o input seja 1, irá para a sub-rotina RelatorioListaPrecos (tela 1.4.1).
+                RelatorioListaPrecos();
+            }
+            if (MENUREL == 2) { //caso o input seja 2, irá para a sub-rotina RelatorioBalanco (tela 1.4.2).
+                RelatorioBalanco();
+            }
+        }
+        return MENUREL; //retorna 0 para voltar ao menu principal.
     }
 }
