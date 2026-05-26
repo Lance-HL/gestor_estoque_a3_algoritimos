@@ -10,6 +10,9 @@ public class Principal {
             if (MENUPP == 2) { //caso o inout seja 2 no MenuPrincipal, irá para a sub-rotina MenuMovimentacao.
                 MenuMovimentacao();
             }
+            if (MENUPP == 3) {
+                ReajustePrecos();
+            }
             if (MENUPP == 4) { //caso o input seja 4 no MenuPrincipal, irá para a sub-rotina MenuRelatorios.
                 MenuRelatorios();
             }
@@ -21,7 +24,7 @@ public class Principal {
                 + "SEX ON THE BAR LTDA<br>" //<br> se refere à *break* line, quebra de linha, que faz ir bra linha de baixo. É o mesmo que \n em java.
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MENU PRINCIPAL"
-                + "<div><br>" //o </div> significa que é o fim dos textos
+                + "<div><br>" //o </div> significa que é o fim dos textos   
                 + "<div style='text-align: justify;'>" //isso muda a formatação do texto para Justificar ao invés de Centralizar.
                 + "1 - CADASTRO DE PRODUTO<br>"
                 + "2 - MOVIMENTAÇÃO<br>"
