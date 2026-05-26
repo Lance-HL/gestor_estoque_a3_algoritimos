@@ -1,5 +1,13 @@
 import javax.swing.JOptionPane;
 public class Principal {
+    // vetores para armazenar os dados dos produtos cadastrados
+    static final int MAX_PRODUTOS = 100; //capacidade máxima de produtos no cadastro
+    static String[] nomeProdutos = new String[MAX_PRODUTOS]; //vetor de nomes dos produtos
+    static double[] precoProdutos = new double[MAX_PRODUTOS]; //vetor de preços dos produtos
+    static String[] unidadeProdutos = new String[MAX_PRODUTOS]; //vetor de unidades dos produtos
+    static int[] qtdeProdutos = new int[MAX_PRODUTOS]; //vetor de quantidades dos produtos
+    static int totalProdutos = 0; //contador de produtos cadastrados
+
     public static void main(String[] args) {
         int MENUPP = -1; //atribui um valor á varivel -1 pra ela poder ser utilizada no loop (estou usando loop para a gente conseguir voltar para esse menu depois).
         while (MENUPP != 0) { //enquanto o inout não for 0, o loop vai continuar mantendo a tela do menu principal.
@@ -167,6 +175,13 @@ public class Principal {
             );
             if (CONFIRMA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
             if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", confirma a inclusão e pergunta se deseja nova alteração.
+                if (totalProdutos < MAX_PRODUTOS) { //verifica se ainda há espaço nos vetores antes de cadastrar.
+                    nomeProdutos[totalProdutos] = NOMEPRODUTO; //armazena o nome do produto no vetor de nomes.
+                    precoProdutos[totalProdutos] = PRECOPRODUTO; //armazena o preço do produto no vetor de preços.
+                    unidadeProdutos[totalProdutos] = UNIDADE; //armazena a unidade do produto no vetor de unidades.
+                    qtdeProdutos[totalProdutos] = QTDEPRODUTO; //armazena a quantidade do produto no vetor de quantidades.
+                    totalProdutos++; //incrementa o contador de produtos cadastrados.
+                }
                 NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração/inclusão.
                     "<html><div style='text-align: center;'>"
                     + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
@@ -759,13 +774,6 @@ public class Principal {
         } //caso o input seja "0" ou o usuário clique em Cancelar, o loop encerra e retorna para a tela 1.4.
     }
     public static void RelatorioListaPrecos() { //sub-rotina responsável pela tela de lista de preços.
-        String[][] PRODUTOS = { //tabela de produtos com nome, unidade e preço.
-            {"AXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
-            {"BXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
-            {"CXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
-            {"DXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"},
-            {"EXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", "XXX", "9.99"}
-        };
         String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
                 + "SEX ON THE BAR LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
@@ -778,15 +786,18 @@ public class Principal {
                 + "<td>&nbsp;&nbsp;</td>"
                 + "<td><b>PREÇO</b></td>"
                 + "</tr>";
-        for (String[] PRODUTO : PRODUTOS) { //percorre a tabela de produtos montando as linhas da lista.
-            double PRECO = Double.parseDouble(PRODUTO[2]); //converte o preço para double.
-            LISTA += "<tr>"
-                + "<td>" + PRODUTO[0] + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + PRODUTO[1] + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + String.format("%.2f", PRECO) + "</td>"
-                + "</tr>";
+        if (totalProdutos == 0) { //verifica se não há produtos cadastrados para exibir mensagem adequada.
+            LISTA += "<tr><td colspan='5'>NENHUM PRODUTO CADASTRADO.</td></tr>";
+        } else {
+            for (int i = 0; i < totalProdutos; i++) { //percorre os vetores de produtos cadastrados montando as linhas da lista.
+                LISTA += "<tr>"
+                    + "<td>" + nomeProdutos[i] + "</td>"
+                    + "<td>&nbsp;&nbsp;</td>"
+                    + "<td>" + unidadeProdutos[i] + "</td>"
+                    + "<td>&nbsp;&nbsp;</td>"
+                    + "<td>" + String.format("%.2f", precoProdutos[i]) + "</td>"
+                    + "</tr>";
+            }
         }
         LISTA += "</table><br>" //finaliza a tabela e adiciona instrução para retornar.
                 + "Digite 0 para retornar."
