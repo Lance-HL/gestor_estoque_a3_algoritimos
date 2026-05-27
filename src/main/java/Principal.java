@@ -816,13 +816,12 @@ public class Principal {
             if (nomeProdutos[i].equalsIgnoreCase(nomeBusca)) {
                 JOptionPane.showMessageDialog(
                         null,
-                        """
-                        PRODUTO ENCONTRADO
+                        "PRODUTO ENCONTRADO\n\n"
                         
-                        nome: """ + nomeProdutos[1]
+                        + "Nome: " + nomeProdutos[i]
                         + "\nPreço: " + String.format("%.2f", precoProdutos[i])
-                        + "\nUnidade: " + unidadeProdutos[1]
-                        + "\nQuantidade: " + qtdeProdutos[1]
+                        + "\nUnidade: " + unidadeProdutos[i]
+                        + "\nQuantidade: " + qtdeProdutos[i]
                 );
 
                 encontrado = true;
