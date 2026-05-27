@@ -29,7 +29,7 @@ public class Principal {
     public static int MenuPrincipal() {
         String MENUPRINCIPAL = JOptionPane.showInputDialog(
                 "<html><div style='text-align: center;'>" //isso é só pra centralizar o texto usando html básico.
-                + "SEX ON THE BAR LTDA<br>" //<br> se refere à *break* line, quebra de linha, que faz ir bra linha de baixo. É o mesmo que \n em java.
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>" //<br> se refere à *break* line, quebra de linha, que faz ir bra linha de baixo. É o mesmo que \n em java.
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MENU PRINCIPAL"
                 + "<div><br>" //o </div> significa que é o fim dos textos   
@@ -49,7 +49,7 @@ public class Principal {
         while (MENUCADASTRO != 0) { //enquanto o input não for 0, o loop mantém a tela de cadastro.
             String INPUT = JOptionPane.showInputDialog(
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "CADASTRO DE PRODUTOS"
                     + "</div><br>"
@@ -83,7 +83,7 @@ public class Principal {
         while (MENUMOV != 0) { //enquanto o input não for 0, o loop mantém a tela de movimentação.
             String MENUMOVIMENTAÇÃO = JOptionPane.showInputDialog(
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "MOVIMENTAÇÃO"
                     + "</div><br>"
@@ -334,7 +334,7 @@ public class Principal {
         while (CONFIRMAENTRADA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas entradas.
             String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
                 + "</div><br><br>"
@@ -345,7 +345,7 @@ public class Principal {
             if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
             String QTDEATUALSTR = JOptionPane.showInputDialog( //segundo input: solicita a quantidade atual do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
                 + "</div><br><br>"
@@ -358,7 +358,7 @@ public class Principal {
             int QTDEATUAL = Integer.parseInt(QTDEATUALSTR); //converte a String da quantidade atual para inteiro.
             String QTDEENTRADASTR = JOptionPane.showInputDialog( //terceiro input: solicita a quantidade de entrada.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
                 + "</div><br><br>"
@@ -373,7 +373,7 @@ public class Principal {
             int QTDEFINAL = QTDEATUAL + QTDEENTRADA; //calcula a quantidade final somando atual com entrada.
             String CONFIRMA = JOptionPane.showInputDialog( //quarto input: exibe o resumo e solicita confirmação da entrada.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
                 + "</div><br><br>"
@@ -389,7 +389,7 @@ public class Principal {
             if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova entrada.
                 CONFIRMAENTRADA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova entrada.
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDAA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
                     + "</div><br><br>"
@@ -402,7 +402,7 @@ public class Principal {
             } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova entrada.
                 CONFIRMAENTRADA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova entrada.
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
                     + "</div><br><br>"
@@ -420,7 +420,7 @@ public class Principal {
         while (CONFIRMASAIDA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas saídas.
             String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
                 + "</div><br><br>"
@@ -431,7 +431,7 @@ public class Principal {
             if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
             String QTDEATUALSTR = JOptionPane.showInputDialog( //segundo input: solicita a quantidade atual do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
                 + "</div><br><br>"
@@ -444,7 +444,7 @@ public class Principal {
             int QTDEATUAL = Integer.parseInt(QTDEATUALSTR); //converte a String da quantidade atual para inteiro.
             String QTDESAIDASTR = JOptionPane.showInputDialog( //terceiro input: solicita a quantidade de saída.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
                 + "</div><br><br>"
@@ -459,7 +459,7 @@ public class Principal {
             int QTDEFINAL = QTDEATUAL - QTDESAIDA; //calcula a quantidade final subtraindo a saída da atual.
             String CONFIRMA = JOptionPane.showInputDialog( //quarto input: exibe o resumo e solicita confirmação da saída.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
                 + "</div><br><br>"
@@ -475,7 +475,7 @@ public class Principal {
             if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova saída.
                 CONFIRMASAIDA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova saída.
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
                     + "</div><br><br>"
@@ -488,7 +488,7 @@ public class Principal {
             } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova saída.
                 CONFIRMASAIDA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova saída.
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
                     + "</div><br><br>"
@@ -506,7 +506,7 @@ public class Principal {
         while (NOVOREAJUSTE.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novos reajustes.
             String TIPOREAJUSTE = JOptionPane.showInputDialog( //primeiro input: solicita se o reajuste será geral ou de um produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "REAJUSTE DE PREÇOS"
                 + "</div><br><br>"
@@ -519,7 +519,7 @@ public class Principal {
             if (TIPOREAJUSTE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
             String NOMEPRODUTO = JOptionPane.showInputDialog( //segundo input: solicita o nome do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "REAJUSTE DE PREÇOS"
                 + "</div><br><br>"
@@ -531,7 +531,7 @@ public class Principal {
             if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
             String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "REAJUSTE DE PREÇOS"
                 + "</div><br><br>"
@@ -544,7 +544,7 @@ public class Principal {
             if (UNIDADE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
             String PRECOATUALSTR = JOptionPane.showInputDialog( //quarto input: solicita o preço atual do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "REAJUSTE DE PREÇOS"
                 + "</div><br><br>"
@@ -559,7 +559,7 @@ public class Principal {
             double PRECOATUAL = Double.parseDouble(PRECOATUALSTR.replace(",", ".")); //converte a String do preço atual para double, aceitando vírgula ou ponto.
             String PERCENTUALSTR = JOptionPane.showInputDialog( //quinto input: solicita o percentual de reajuste.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "REAJUSTE DE PREÇOS"
                 + "</div><br><br>"
@@ -576,7 +576,7 @@ public class Principal {
             double PRECOFINAL = PRECOATUAL + (PRECOATUAL * PERCENTUAL / 100); //calcula o preço final aplicando o percentual de reajuste.
             String CONFIRMAREAJUSTE = JOptionPane.showInputDialog( //sexto input: exibe o resumo e solicita confirmação do reajuste.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "REAJUSTE DE PREÇOS"
                 + "</div><br><br>"
@@ -594,7 +594,7 @@ public class Principal {
             if (CONFIRMAREAJUSTE.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja novo reajuste.
                 NOVOREAJUSTE = JOptionPane.showInputDialog( //sétimo input: pergunta se deseja fazer um novo reajuste.
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "REAJUSTE DE PREÇOS"
                     + "</div><br><br>"
@@ -607,7 +607,7 @@ public class Principal {
             } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja novo reajuste.
                 NOVOREAJUSTE = JOptionPane.showInputDialog( //sétimo input: pergunta se deseja fazer um novo reajuste.
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "REAJUSTE DE PREÇOS"
                     + "</div><br><br>"
@@ -625,7 +625,7 @@ public class Principal {
         while (NOVAEXCLUSAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas exclusões.
             String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "EXCLUSÃO DE PRODUTO"
                 + "</div><br><br>"
@@ -636,7 +636,7 @@ public class Principal {
             if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
             String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "EXCLUSÃO DE PRODUTO"
                 + "</div><br><br>"
@@ -662,7 +662,7 @@ public class Principal {
             if (UNIDADE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
             String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "EXCLUSÃO DE PRODUTO"
                 + "</div><br><br>"
@@ -677,7 +677,7 @@ public class Principal {
             int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
             String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da exclusão.
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "EXCLUSÃO DE PRODUTO"
                 + "</div><br><br>"
@@ -693,7 +693,7 @@ public class Principal {
             if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova exclusão.
                 NOVAEXCLUSAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova exclusão.
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "EXCLUSÃO DE PRODUTO"
                     + "</div><br><br>"
@@ -706,7 +706,7 @@ public class Principal {
             } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova exclusão.
                 NOVAEXCLUSAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova exclusão.
                     "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                     + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                     + "EXCLUSÃO DE PRODUTO"
                     + "</div><br><br>"
@@ -730,7 +730,7 @@ public class Principal {
         int TOTALITENS = 0; //variável para acumular o total de itens no estoque.
         double VALORTOTAL = 0; //variável para acumular o valor total do estoque.
         String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "BALANÇO FÍSICO-FINANCEIRO<br><br>"
                 + "<table border='0'>"
@@ -775,7 +775,7 @@ public class Principal {
     }
     public static void RelatorioListaPrecos() { //sub-rotina responsável pela tela de lista de preços.
         String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "LISTA DE PREÇOS<br><br>"
                 + "<table border='0'>"
@@ -848,7 +848,7 @@ public class Principal {
         while (MENUREL != 0) { //enquanto o input não for 0, o loop mantém a tela de relatórios.
             String INPUT = JOptionPane.showInputDialog(
                 "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "RELATÓRIOS"
                 + "</div><br>"
