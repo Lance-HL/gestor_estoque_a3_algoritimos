@@ -1,5 +1,7 @@
 import javax.swing.JOptionPane;
+
 public class Principal {
+
     // vetores para armazenar os dados dos produtos cadastrados
     static final int MAX_PRODUTOS = 100; //capacidade máxima de produtos no cadastro
     static String[] nomeProdutos = new String[MAX_PRODUTOS]; //vetor de nomes dos produtos
@@ -26,6 +28,7 @@ public class Principal {
             }
         }
     }
+
     public static int MenuPrincipal() {
         String MENUPRINCIPAL = JOptionPane.showInputDialog(
                 "<html><div style='text-align: center;'>" //isso é só pra centralizar o texto usando html básico.
@@ -41,9 +44,12 @@ public class Principal {
                 + "0 - FINALIZAR<br><br>"
                 + "</div></html>" //novamente fim da divisão e quando iniciar e finalizar uma programação em html, precisa ter <html> no ínicio e fim.
         );
-        if (MENUPRINCIPAL == null) return 0; //se o usuário clicar em Cancelar ou fechar a janela, encerra o programa retornando 0.
+        if (MENUPRINCIPAL == null) {
+            return 0; //se o usuário clicar em Cancelar ou fechar a janela, encerra o programa retornando 0.
+        }
         return Integer.parseInt(MENUPRINCIPAL); //devolve o valor em Int da String MENUPRINCIPAL para que abra possibilidade pra um novo redirecionamento.
     }
+
     public static int MenuCadastro() {
         int MENUCADASTRO = -1; //atribui -1 para que o loop inicie e permita retorno correto ao menu principal.
         while (MENUCADASTRO != 0) { //enquanto o input não for 0, o loop mantém a tela de cadastro.
@@ -61,7 +67,9 @@ public class Principal {
                     + "0 - RETORNAR<br><br>"
                     + "</div></html>"
             );
-            if (INPUT == null) return 0; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (INPUT == null) {
+                return 0; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             MENUCADASTRO = Integer.parseInt(INPUT);
             if (MENUCADASTRO == 1) { //caso o input seja 1 no MenuCadastro, irá para a sub-rotina InclusaoProduto (tela 1.1.1).
                 InclusaoProduto();
@@ -78,6 +86,299 @@ public class Principal {
         }
         return MENUCADASTRO; //retorna 0 para voltar ao menu principal.
     }
+
+    public static void InclusaoProduto() { //sub-rotina responsável pela tela de inclusão de produto (tela 1.1.1).
+        String NOVAALTERACAO = "S"; //atribui "S" para que o loop inicie automaticamente.
+        while (NOVAALTERACAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas inclusões ou alterações.
+            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "INCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                    + "</div></html>"
+            );
+            if (NOMEPRODUTO == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "INCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br><br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                    + "</div></html>"
+            );
+            if (PRECOPRODUTOSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
+            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "INCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
+                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                    + "</div></html>"
+            );
+            if (UNIDADE == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "INCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br><br>"
+                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;:"
+                    + "</div></html>"
+            );
+            if (QTDEPRODUTOSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
+            String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da inclusão.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "INCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                    + "CONFIRMA INCLUSÃO ( S/N ) ?&nbsp;"
+                    + "</div></html>"
+            );
+            if (CONFIRMA == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", confirma a inclusão e pergunta se deseja nova alteração.
+                if (totalProdutos < MAX_PRODUTOS) { //verifica se ainda há espaço nos vetores antes de cadastrar.
+                    nomeProdutos[totalProdutos] = NOMEPRODUTO; //armazena o nome do produto no vetor de nomes.
+                    precoProdutos[totalProdutos] = PRECOPRODUTO; //armazena o preço do produto no vetor de preços.
+                    unidadeProdutos[totalProdutos] = UNIDADE; //armazena a unidade do produto no vetor de unidades.
+                    qtdeProdutos[totalProdutos] = QTDEPRODUTO; //armazena a quantidade do produto no vetor de quantidades.
+                    totalProdutos++; //incrementa o contador de produtos cadastrados.
+                }
+                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração/inclusão.
+                        "<html><div style='text-align: center;'>"
+                        + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "INCLUSÃO DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                        + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                        + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                        + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                        + "CONFIRMA INCLUSÃO ( S/N ) ? S<br><br>"
+                        + "INCLUSÃO CONFIRMADA COM SUCESSO!<br><br>"
+                        + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
+                        + "</div></html>"
+                );
+                if (NOVAALTERACAO == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+                }
+            } else { //caso o input seja "N", cancela a inclusão e pergunta se deseja nova alteração.
+                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração/inclusão.
+                        "<html><div style='text-align: center;'>"
+                        + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "INCLUSÃO DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                        + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                        + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                        + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                        + "CONFIRMA INCLUSÃO ( S/N ) ? N<br><br>"
+                        + "INCLUSÃO CANCELADA.<br><br>"
+                        + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
+                        + "</div></html>"
+                );
+                if (NOVAALTERACAO == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+                }
+            }
+        } //caso o input seja "N" em nova alteração, o loop encerra e retorna para a tela 1.1 (MenuCadastro).
+    }
+
+    public static void ConsultaProduto() {
+
+        String nomeBusca = JOptionPane.showInputDialog(
+                "Digite o nome do produto:"
+        );
+
+        if (nomeBusca == null) {
+            return;
+        }
+
+        boolean encontrado = false;
+
+        for (int i = 0; i < totalProdutos; i++) {
+            if (nomeProdutos[i].equalsIgnoreCase(nomeBusca)) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        """
+                        PRODUTO ENCONTRADO
+                        
+                        nome: """ + nomeProdutos[1]
+                        + "\nPreço: " + String.format("%.2f", precoProdutos[i])
+                        + "\nUnidade: " + unidadeProdutos[1]
+                        + "\nQuantidade: " + qtdeProdutos[1]
+                );
+
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Produto não encontrado."
+            );
+        }
+    }
+
+    public static void AlteracaoProduto() { //sub-rotina responsável pela tela de alteração de produto (tela 1.1.2).
+        String NOVAALTERACAO = "S"; //atribui "S" para que o loop inicie automaticamente.
+        while (NOVAALTERACAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas alterações.
+            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto a ser alterado.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "ALTERAÇÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                    + "</div></html>"
+            );
+            if (NOMEPRODUTO == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o novo preço do produto.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "ALTERAÇÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br><br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                    + "</div></html>"
+            );
+            if (PRECOPRODUTOSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
+            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a nova unidade do produto.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "ALTERAÇÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
+                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
+                    + "</div></html>"
+            );
+            if (UNIDADE == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a nova quantidade do produto.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "ALTERAÇÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br><br>"
+                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;:"
+                    + "</div></html>"
+            );
+            if (QTDEPRODUTOSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
+            String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da alteração.
+                    "<html><div style='text-align: center;'>"
+                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "ALTERAÇÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                    + "CONFIRMA ALTERAÇÃO ( S/N ) ?&nbsp;"
+                    + "</div></html>"
+            );
+            if (CONFIRMA == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
+            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", confirma a alteração e pergunta se deseja nova alteração.
+                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração.
+                        "<html><div style='text-align: center;'>"
+                        + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "ALTERAÇÃO DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                        + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                        + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                        + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                        + "CONFIRMA ALTERAÇÃO ( S/N ) ? S<br><br>"
+                        + "ALTERAÇÃO CONFIRMADA COM SUCESSO!<br><br>"
+                        + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
+                        + "</div></html>"
+                );
+                if (NOVAALTERACAO == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+                }
+            } else { //caso o input seja "N", cancela a alteração e pergunta se deseja nova alteração.
+                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração.
+                        "<html><div style='text-align: center;'>"
+                        + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "ALTERAÇÃO DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
+                        + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                        + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
+                        + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
+                        + "CONFIRMA ALTERAÇÃO ( S/N ) ? N<br><br>"
+                        + "ALTERAÇÃO CANCELADA.<br><br>"
+                        + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
+                        + "</div></html>"
+                );
+                if (NOVAALTERACAO == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+                }
+            }
+        } //caso o input seja "N" em nova alteração, o loop encerra e retorna para a tela 1.1 (MenuCadastro).
+    }
+
     public static int MenuMovimentacao() {
         int MENUMOV = -1; //atribui -1 para que o loop inicie e permita retorno correto ao menu principal.
         while (MENUMOV != 0) { //enquanto o input não for 0, o loop mantém a tela de movimentação.
@@ -93,7 +394,9 @@ public class Principal {
                     + "0 - RETORNAR<br><br>"
                     + "</div></html>"
             );
-            if (MENUMOVIMENTAÇÃO == null) return 0; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (MENUMOVIMENTAÇÃO == null) {
+                return 0; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             MENUMOV = Integer.parseInt(MENUMOVIMENTAÇÃO);
             if (MENUMOV == 1) { //caso o input seja 1, irá para a sub-rotina EntradaProduto.
                 EntradaProduto();
@@ -104,621 +407,455 @@ public class Principal {
         }
         return MENUMOV; //retorna 0 para voltar ao menu principal.
     }
-    public static void InclusaoProduto() { //sub-rotina responsável pela tela de inclusão de produto (tela 1.1.1).
-        String NOVAALTERACAO = "S"; //atribui "S" para que o loop inicie automaticamente.
-        while (NOVAALTERACAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas inclusões ou alterações.
-            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "INCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
-                + "</div></html>"
-            );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "INCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br><br>"
-                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
-                + "</div></html>"
-            );
-            if (PRECOPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
-            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "INCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
-                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
-                + "</div></html>"
-            );
-            if (UNIDADE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "INCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br><br>"
-                + "QUANTIDADE&nbsp;&nbsp;&nbsp;:"
-                + "</div></html>"
-            );
-            if (QTDEPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
-            String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da inclusão.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "INCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
-                + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
-                + "CONFIRMA INCLUSÃO ( S/N ) ?&nbsp;"
-                + "</div></html>"
-            );
-            if (CONFIRMA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", confirma a inclusão e pergunta se deseja nova alteração.
-                if (totalProdutos < MAX_PRODUTOS) { //verifica se ainda há espaço nos vetores antes de cadastrar.
-                    nomeProdutos[totalProdutos] = NOMEPRODUTO; //armazena o nome do produto no vetor de nomes.
-                    precoProdutos[totalProdutos] = PRECOPRODUTO; //armazena o preço do produto no vetor de preços.
-                    unidadeProdutos[totalProdutos] = UNIDADE; //armazena a unidade do produto no vetor de unidades.
-                    qtdeProdutos[totalProdutos] = QTDEPRODUTO; //armazena a quantidade do produto no vetor de quantidades.
-                    totalProdutos++; //incrementa o contador de produtos cadastrados.
-                }
-                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração/inclusão.
-                    "<html><div style='text-align: center;'>"
-                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "INCLUSÃO DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
-                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
-                    + "CONFIRMA INCLUSÃO ( S/N ) ? S<br><br>"
-                    + "INCLUSÃO CONFIRMADA COM SUCESSO!<br><br>"
-                    + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
-                    + "</div></html>"
-                );
-                if (NOVAALTERACAO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            } else { //caso o input seja "N", cancela a inclusão e pergunta se deseja nova alteração.
-                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração/inclusão.
-                    "<html><div style='text-align: center;'>"
-                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "INCLUSÃO DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
-                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
-                    + "CONFIRMA INCLUSÃO ( S/N ) ? N<br><br>"
-                    + "INCLUSÃO CANCELADA.<br><br>"
-                    + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
-                    + "</div></html>"
-                );
-                if (NOVAALTERACAO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            }
-        } //caso o input seja "N" em nova alteração, o loop encerra e retorna para a tela 1.1 (MenuCadastro).
-    }
-    public static void AlteracaoProduto() { //sub-rotina responsável pela tela de alteração de produto (tela 1.1.2).
-        String NOVAALTERACAO = "S"; //atribui "S" para que o loop inicie automaticamente.
-        while (NOVAALTERACAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas alterações.
-            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto a ser alterado.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "ALTERAÇÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
-                + "</div></html>"
-            );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o novo preço do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "ALTERAÇÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br><br>"
-                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
-                + "</div></html>"
-            );
-            if (PRECOPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
-            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a nova unidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "ALTERAÇÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
-                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"
-                + "</div></html>"
-            );
-            if (UNIDADE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a nova quantidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "ALTERAÇÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br><br>"
-                + "QUANTIDADE&nbsp;&nbsp;&nbsp;:"
-                + "</div></html>"
-            );
-            if (QTDEPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
-            String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da alteração.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "ALTERAÇÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
-                + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
-                + "CONFIRMA ALTERAÇÃO ( S/N ) ?&nbsp;"
-                + "</div></html>"
-            );
-            if (CONFIRMA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", confirma a alteração e pergunta se deseja nova alteração.
-                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração.
-                    "<html><div style='text-align: center;'>"
-                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "ALTERAÇÃO DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
-                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
-                    + "CONFIRMA ALTERAÇÃO ( S/N ) ? S<br><br>"
-                    + "ALTERAÇÃO CONFIRMADA COM SUCESSO!<br><br>"
-                    + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
-                    + "</div></html>"
-                );
-                if (NOVAALTERACAO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            } else { //caso o input seja "N", cancela a alteração e pergunta se deseja nova alteração.
-                NOVAALTERACAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova alteração.
-                    "<html><div style='text-align: center;'>"
-                    + "XYZ COMERCIO DE PRODUTOS LTDA.<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "ALTERAÇÃO DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "NOME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + NOMEPRODUTO + "<br>"
-                    + "PREÇO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                    + "UNIDADE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + UNIDADE + "<br>"
-                    + "QUANTIDADE&nbsp;&nbsp;&nbsp;: " + QTDEPRODUTO + "<br><br>"
-                    + "CONFIRMA ALTERAÇÃO ( S/N ) ? N<br><br>"
-                    + "ALTERAÇÃO CANCELADA.<br><br>"
-                    + "NOVA ALTERAÇÃO ( S/N ) ?&nbsp;"
-                    + "</div></html>"
-                );
-                if (NOVAALTERACAO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            }
-        } //caso o input seja "N" em nova alteração, o loop encerra e retorna para a tela 1.1 (MenuCadastro).
-    }
+
     public static void EntradaProduto() { //sub-rotina responsável pela tela de entrada de produto.
         String CONFIRMAENTRADA = "S"; //atribui "S" para que o loop inicie automaticamente.
         while (CONFIRMAENTRADA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas entradas.
             String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "PRODUTO:"
+                    + "</div></html>"
             );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            if (NOMEPRODUTO == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            }
             String QTDEATUALSTR = JOptionPane.showInputDialog( //segundo input: solicita a quantidade atual do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br><br>"
-                + "QTDE ATUAL:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "PRODUTO    : " + NOMEPRODUTO + "<br><br>"
+                    + "QTDE ATUAL:"
+                    + "</div></html>"
             );
-            if (QTDEATUALSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            if (QTDEATUALSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            }
             int QTDEATUAL = Integer.parseInt(QTDEATUALSTR); //converte a String da quantidade atual para inteiro.
             String QTDEENTRADASTR = JOptionPane.showInputDialog( //terceiro input: solicita a quantidade de entrada.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
-                + "QTDE ATUAL : " + QTDEATUAL + "<br><br>"
-                + "QTDE ENTRADA:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                    + "QTDE ATUAL : " + QTDEATUAL + "<br><br>"
+                    + "QTDE ENTRADA:"
+                    + "</div></html>"
             );
-            if (QTDEENTRADASTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            if (QTDEENTRADASTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            }
             int QTDEENTRADA = Integer.parseInt(QTDEENTRADASTR); //converte a String da quantidade de entrada para inteiro.
             int QTDEFINAL = QTDEATUAL + QTDEENTRADA; //calcula a quantidade final somando atual com entrada.
             String CONFIRMA = JOptionPane.showInputDialog( //quarto input: exibe o resumo e solicita confirmação da entrada.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO      : " + NOMEPRODUTO + "<br>"
-                + "QTDE ATUAL   : " + QTDEATUAL + "<br>"
-                + "QTDE ENTRADA : " + QTDEENTRADA + "<br>"
-                + "QTDE FINAL   : " + QTDEFINAL + "<br><br>"
-                + "CONFIRMA ENTRADA (S/N)?:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "PRODUTO      : " + NOMEPRODUTO + "<br>"
+                    + "QTDE ATUAL   : " + QTDEATUAL + "<br>"
+                    + "QTDE ENTRADA : " + QTDEENTRADA + "<br>"
+                    + "QTDE FINAL   : " + QTDEFINAL + "<br><br>"
+                    + "CONFIRMA ENTRADA (S/N)?:"
+                    + "</div></html>"
             );
-            if (CONFIRMA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            if (CONFIRMA == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            }
             if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova entrada.
                 CONFIRMAENTRADA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova entrada.
-                    "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "ENTRADA CONFIRMADA COM SUCESSO!<br><br>"
-                    + "NOVA ENTRADA (S/N)?:"
-                    + "</div></html>"
+                        "<html><div style='text-align: center;'>"
+                        + "SEX ON THE BAR LTDA<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "ENTRADA CONFIRMADA COM SUCESSO!<br><br>"
+                        + "NOVA ENTRADA (S/N)?:"
+                        + "</div></html>"
                 );
-                if (CONFIRMAENTRADA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+                if (CONFIRMAENTRADA == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+                }
             } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova entrada.
                 CONFIRMAENTRADA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova entrada.
-                    "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "ENTRADA CANCELADA.<br><br>"
-                    + "NOVA ENTRADA (S/N)?:"
-                    + "</div></html>"
+                        "<html><div style='text-align: center;'>"
+                        + "SEX ON THE BAR LTDA<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "MOVIMENTAÇÃO - ENTRADA DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "ENTRADA CANCELADA.<br><br>"
+                        + "NOVA ENTRADA (S/N)?:"
+                        + "</div></html>"
                 );
-                if (CONFIRMAENTRADA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+                if (CONFIRMAENTRADA == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+                }
             }
         } //caso o input seja "N" em nova entrada, o loop encerra e retorna para a tela 1.2.
     }
+
     public static void SaidaProduto() { //sub-rotina responsável pela tela de saída de produto.
         String CONFIRMASAIDA = "S"; //atribui "S" para que o loop inicie automaticamente.
         while (CONFIRMASAIDA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas saídas.
             String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "PRODUTO:"
+                    + "</div></html>"
             );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            if (NOMEPRODUTO == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            }
             String QTDEATUALSTR = JOptionPane.showInputDialog( //segundo input: solicita a quantidade atual do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br><br>"
-                + "QTDE ATUAL:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "PRODUTO    : " + NOMEPRODUTO + "<br><br>"
+                    + "QTDE ATUAL:"
+                    + "</div></html>"
             );
-            if (QTDEATUALSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            if (QTDEATUALSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            }
             int QTDEATUAL = Integer.parseInt(QTDEATUALSTR); //converte a String da quantidade atual para inteiro.
             String QTDESAIDASTR = JOptionPane.showInputDialog( //terceiro input: solicita a quantidade de saída.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
-                + "QTDE ATUAL : " + QTDEATUAL + "<br><br>"
-                + "QTDE SAÍDA:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                    + "QTDE ATUAL : " + QTDEATUAL + "<br><br>"
+                    + "QTDE SAÍDA:"
+                    + "</div></html>"
             );
-            if (QTDESAIDASTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            if (QTDESAIDASTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            }
             int QTDESAIDA = Integer.parseInt(QTDESAIDASTR); //converte a String da quantidade de saída para inteiro.
             int QTDEFINAL = QTDEATUAL - QTDESAIDA; //calcula a quantidade final subtraindo a saída da atual.
             String CONFIRMA = JOptionPane.showInputDialog( //quarto input: exibe o resumo e solicita confirmação da saída.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
-                + "QTDE ATUAL : " + QTDEATUAL + "<br>"
-                + "QTDE SAÍDA : " + QTDESAIDA + "<br>"
-                + "QTDE FINAL : " + QTDEFINAL + "<br><br>"
-                + "CONFIRMA SAÍDA (S/N)?:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                    + "QTDE ATUAL : " + QTDEATUAL + "<br>"
+                    + "QTDE SAÍDA : " + QTDESAIDA + "<br>"
+                    + "QTDE FINAL : " + QTDEFINAL + "<br><br>"
+                    + "CONFIRMA SAÍDA (S/N)?:"
+                    + "</div></html>"
             );
-            if (CONFIRMA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            if (CONFIRMA == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+            }
             if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova saída.
                 CONFIRMASAIDA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova saída.
-                    "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "SAÍDA CONFIRMADA COM SUCESSO!<br><br>"
-                    + "NOVA SAÍDA (S/N)?:"
-                    + "</div></html>"
+                        "<html><div style='text-align: center;'>"
+                        + "SEX ON THE BAR LTDA<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "SAÍDA CONFIRMADA COM SUCESSO!<br><br>"
+                        + "NOVA SAÍDA (S/N)?:"
+                        + "</div></html>"
                 );
-                if (CONFIRMASAIDA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+                if (CONFIRMASAIDA == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+                }
             } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova saída.
                 CONFIRMASAIDA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova saída.
-                    "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "SAÍDA CANCELADA.<br><br>"
-                    + "NOVA SAÍDA (S/N)?:"
-                    + "</div></html>"
+                        "<html><div style='text-align: center;'>"
+                        + "SEX ON THE BAR LTDA<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "SAÍDA CANCELADA.<br><br>"
+                        + "NOVA SAÍDA (S/N)?:"
+                        + "</div></html>"
                 );
-                if (CONFIRMASAIDA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+                if (CONFIRMASAIDA == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+                }
             }
         } //caso o input seja "N" em nova saída, o loop encerra e retorna para a tela 1.2.
     }
+
     public static void ReajustePrecos() { //sub-rotina responsável pela tela de reajuste de preços.
         String NOVOREAJUSTE = "S"; //atribui "S" para que o loop inicie automaticamente.
         while (NOVOREAJUSTE.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novos reajustes.
             String TIPOREAJUSTE = JOptionPane.showInputDialog( //primeiro input: solicita se o reajuste será geral ou de um produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "REAJUSTE DE PREÇOS"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "REAJUSTE GERAL OU DE UM PRODUTO?<br><br>"
-                + "1 - GERAL<br>"
-                + "2 - UM PRODUTO<br>"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "REAJUSTE DE PREÇOS"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "REAJUSTE GERAL OU DE UM PRODUTO?<br><br>"
+                    + "1 - GERAL<br>"
+                    + "2 - UM PRODUTO<br>"
+                    + "</div></html>"
             );
-            if (TIPOREAJUSTE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (TIPOREAJUSTE == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             String NOMEPRODUTO = JOptionPane.showInputDialog( //segundo input: solicita o nome do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "REAJUSTE DE PREÇOS"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br><br>"
-                + "PRODUTO:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "REAJUSTE DE PREÇOS"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br><br>"
+                    + "PRODUTO:"
+                    + "</div></html>"
             );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (NOMEPRODUTO == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "REAJUSTE DE PREÇOS"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
-                + "PRODUTO  : " + NOMEPRODUTO + "<br><br>"
-                + "UNIDADE:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "REAJUSTE DE PREÇOS"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
+                    + "PRODUTO  : " + NOMEPRODUTO + "<br><br>"
+                    + "UNIDADE:"
+                    + "</div></html>"
             );
-            if (UNIDADE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (UNIDADE == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             String PRECOATUALSTR = JOptionPane.showInputDialog( //quarto input: solicita o preço atual do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "REAJUSTE DE PREÇOS"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
-                + "PRODUTO  : " + NOMEPRODUTO + "<br>"
-                + "UNIDADE  : " + UNIDADE + "<br><br>"
-                + "PREÇO ATUAL:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "REAJUSTE DE PREÇOS"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "REAJUSTE : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
+                    + "PRODUTO  : " + NOMEPRODUTO + "<br>"
+                    + "UNIDADE  : " + UNIDADE + "<br><br>"
+                    + "PREÇO ATUAL:"
+                    + "</div></html>"
             );
-            if (PRECOATUALSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (PRECOATUALSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             double PRECOATUAL = Double.parseDouble(PRECOATUALSTR.replace(",", ".")); //converte a String do preço atual para double, aceitando vírgula ou ponto.
             String PERCENTUALSTR = JOptionPane.showInputDialog( //quinto input: solicita o percentual de reajuste.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "REAJUSTE DE PREÇOS"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "REAJUSTE   : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
-                + "UNIDADE    : " + UNIDADE + "<br>"
-                + "PREÇO ATUAL: " + PRECOATUALSTR + "<br><br>"
-                + "PERCENTUAL DE REAJUSTE:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "REAJUSTE DE PREÇOS"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "REAJUSTE   : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
+                    + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                    + "UNIDADE    : " + UNIDADE + "<br>"
+                    + "PREÇO ATUAL: " + PRECOATUALSTR + "<br><br>"
+                    + "PERCENTUAL DE REAJUSTE:"
+                    + "</div></html>"
             );
-            if (PERCENTUALSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (PERCENTUALSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             double PERCENTUAL = Double.parseDouble(PERCENTUALSTR.replace(",", ".")); //converte a String do percentual para double, aceitando vírgula ou ponto.
             double PRECOFINAL = PRECOATUAL + (PRECOATUAL * PERCENTUAL / 100); //calcula o preço final aplicando o percentual de reajuste.
             String CONFIRMAREAJUSTE = JOptionPane.showInputDialog( //sexto input: exibe o resumo e solicita confirmação do reajuste.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "REAJUSTE DE PREÇOS"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "REAJUSTE   : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
-                + "UNIDADE    : " + UNIDADE + "<br>"
-                + "PREÇO ATUAL: " + String.format("%.2f", PRECOATUAL) + "<br>"
-                + "PERCENTUAL : " + String.format("%.2f", PERCENTUAL) + "%<br>"
-                + "PREÇO FINAL: " + String.format("%.2f", PRECOFINAL) + "<br><br>"
-                + "CONFIRMA REAJUSTE (S/N)?:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "REAJUSTE DE PREÇOS"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "REAJUSTE   : " + (TIPOREAJUSTE.equals("1") ? "GERAL" : "UM PRODUTO") + "<br>"
+                    + "PRODUTO    : " + NOMEPRODUTO + "<br>"
+                    + "UNIDADE    : " + UNIDADE + "<br>"
+                    + "PREÇO ATUAL: " + String.format("%.2f", PRECOATUAL) + "<br>"
+                    + "PERCENTUAL : " + String.format("%.2f", PERCENTUAL) + "%<br>"
+                    + "PREÇO FINAL: " + String.format("%.2f", PRECOFINAL) + "<br><br>"
+                    + "CONFIRMA REAJUSTE (S/N)?:"
+                    + "</div></html>"
             );
-            if (CONFIRMAREAJUSTE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (CONFIRMAREAJUSTE == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             if (CONFIRMAREAJUSTE.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja novo reajuste.
                 NOVOREAJUSTE = JOptionPane.showInputDialog( //sétimo input: pergunta se deseja fazer um novo reajuste.
-                    "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "REAJUSTE DE PREÇOS"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "REAJUSTE CONFIRMADO COM SUCESSO!<br><br>"
-                    + "NOVO REAJUSTE (S/N)?:"
-                    + "</div></html>"
+                        "<html><div style='text-align: center;'>"
+                        + "SEX ON THE BAR LTDA<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "REAJUSTE DE PREÇOS"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "REAJUSTE CONFIRMADO COM SUCESSO!<br><br>"
+                        + "NOVO REAJUSTE (S/N)?:"
+                        + "</div></html>"
                 );
-                if (NOVOREAJUSTE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+                if (NOVOREAJUSTE == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+                }
             } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja novo reajuste.
                 NOVOREAJUSTE = JOptionPane.showInputDialog( //sétimo input: pergunta se deseja fazer um novo reajuste.
-                    "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "REAJUSTE DE PREÇOS"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "REAJUSTE CANCELADO.<br><br>"
-                    + "NOVO REAJUSTE (S/N)?:"
-                    + "</div></html>"
+                        "<html><div style='text-align: center;'>"
+                        + "SEX ON THE BAR LTDA<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "REAJUSTE DE PREÇOS"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "REAJUSTE CANCELADO.<br><br>"
+                        + "NOVO REAJUSTE (S/N)?:"
+                        + "</div></html>"
                 );
-                if (NOVOREAJUSTE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+                if (NOVOREAJUSTE == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+                }
             }
         } //caso o input seja "N" em novo reajuste, o loop encerra e retorna para a tela 1.0.
     }
+
     public static void ExclusaoProduto() { //sub-rotina responsável pela tela de exclusão de produto.
         String NOVAEXCLUSAO = "S"; //atribui "S" para que o loop inicie automaticamente.
         while (NOVAEXCLUSAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas exclusões.
             String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "EXCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME:"
+                    + "</div></html>"
             );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            if (NOMEPRODUTO == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
             String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br><br>"
-                + "PREÇO:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "EXCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME     : " + NOMEPRODUTO + "<br><br>"
+                    + "PREÇO:"
+                    + "</div></html>"
             );
-            if (PRECOPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            if (PRECOPRODUTOSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
             double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
             String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br>"
-                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
-                + "UNIDADE:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "EXCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME     : " + NOMEPRODUTO + "<br>"
+                    + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
+                    + "UNIDADE:"
+                    + "</div></html>"
             );
-            if (UNIDADE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            if (UNIDADE == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
             String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br>"
-                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE  : " + UNIDADE + "<br><br>"
-                + "QUANTIDADE:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "EXCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME     : " + NOMEPRODUTO + "<br>"
+                    + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                    + "UNIDADE  : " + UNIDADE + "<br><br>"
+                    + "QUANTIDADE:"
+                    + "</div></html>"
             );
-            if (QTDEPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            if (QTDEPRODUTOSTR == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
             int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
             String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da exclusão.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME       : " + NOMEPRODUTO + "<br>"
-                + "PREÇO      : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE    : " + UNIDADE + "<br>"
-                + "QUANTIDADE : " + QTDEPRODUTO + "<br><br>"
-                + "CONFIRMA EXCLUSÃO (S/N)?:"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "EXCLUSÃO DE PRODUTO"
+                    + "</div><br><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "NOME       : " + NOMEPRODUTO + "<br>"
+                    + "PREÇO      : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
+                    + "UNIDADE    : " + UNIDADE + "<br>"
+                    + "QUANTIDADE : " + QTDEPRODUTO + "<br><br>"
+                    + "CONFIRMA EXCLUSÃO (S/N)?:"
+                    + "</div></html>"
             );
-            if (CONFIRMA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            if (CONFIRMA == null) {
+                return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+            }
             if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova exclusão.
                 NOVAEXCLUSAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova exclusão.
-                    "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "EXCLUSÃO DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "EXCLUSÃO CONFIRMADA COM SUCESSO!<br><br>"
-                    + "NOVA EXCLUSÃO (S/N)?:"
-                    + "</div></html>"
+                        "<html><div style='text-align: center;'>"
+                        + "SEX ON THE BAR LTDA<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "EXCLUSÃO DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "EXCLUSÃO CONFIRMADA COM SUCESSO!<br><br>"
+                        + "NOVA EXCLUSÃO (S/N)?:"
+                        + "</div></html>"
                 );
-                if (NOVAEXCLUSAO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+                if (NOVAEXCLUSAO == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+                }
             } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova exclusão.
                 NOVAEXCLUSAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova exclusão.
-                    "<html><div style='text-align: center;'>"
-                    + "SEX ON THE BAR LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "EXCLUSÃO DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "EXCLUSÃO CANCELADA.<br><br>"
-                    + "NOVA EXCLUSÃO (S/N)?:"
-                    + "</div></html>"
+                        "<html><div style='text-align: center;'>"
+                        + "SEX ON THE BAR LTDA<br>"
+                        + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                        + "EXCLUSÃO DE PRODUTO"
+                        + "</div><br><br>"
+                        + "<div style='text-align: justify;'>"
+                        + "EXCLUSÃO CANCELADA.<br><br>"
+                        + "NOVA EXCLUSÃO (S/N)?:"
+                        + "</div></html>"
                 );
-                if (NOVAEXCLUSAO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+                if (NOVAEXCLUSAO == null) {
+                    return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+                }
             }
         } //caso o input seja "N" em nova exclusão, o loop encerra e retorna para a tela 1.1.
     }
+
     public static void RelatorioBalanco() { //sub-rotina responsável pela tela de balanço físico-financeiro.
         String[][] PRODUTOS = { //tabela de produtos com nome, unidade, preço unitário e quantidade.
             {"AXXXXXXXXXXXXXXXXXX", "XXX", "9.99", "9"},
@@ -752,16 +889,16 @@ public class Principal {
             TOTALITENS += QTDE; //acumula o total de itens.
             VALORTOTAL += PRECOTOTAL; //acumula o valor total.
             LISTA += "<tr>"
-                + "<td>" + PRODUTO[0] + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + PRODUTO[1] + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + String.format("%.2f", PRECOUNIT) + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + QTDE + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + String.format("%.2f", PRECOTOTAL) + "</td>"
-                + "</tr>";
+                    + "<td>" + PRODUTO[0] + "</td>"
+                    + "<td>&nbsp;&nbsp;</td>"
+                    + "<td>" + PRODUTO[1] + "</td>"
+                    + "<td>&nbsp;&nbsp;</td>"
+                    + "<td>" + String.format("%.2f", PRECOUNIT) + "</td>"
+                    + "<td>&nbsp;&nbsp;</td>"
+                    + "<td>" + QTDE + "</td>"
+                    + "<td>&nbsp;&nbsp;</td>"
+                    + "<td>" + String.format("%.2f", PRECOTOTAL) + "</td>"
+                    + "</tr>";
         }
         LISTA += "</table><br>" //finaliza a tabela e adiciona o rodapé com os totais.
                 + "TOTAL DE ITENS NO ESTOQUE : " + TOTALITENS + "<br>"
@@ -773,6 +910,7 @@ public class Principal {
             RETORNO = JOptionPane.showInputDialog(LISTA);
         } //caso o input seja "0" ou o usuário clique em Cancelar, o loop encerra e retorna para a tela 1.4.
     }
+
     public static void RelatorioListaPrecos() { //sub-rotina responsável pela tela de lista de preços.
         String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
                 + "SEX ON THE BAR LTDA<br>"
@@ -791,12 +929,12 @@ public class Principal {
         } else {
             for (int i = 0; i < totalProdutos; i++) { //percorre os vetores de produtos cadastrados montando as linhas da lista.
                 LISTA += "<tr>"
-                    + "<td>" + nomeProdutos[i] + "</td>"
-                    + "<td>&nbsp;&nbsp;</td>"
-                    + "<td>" + unidadeProdutos[i] + "</td>"
-                    + "<td>&nbsp;&nbsp;</td>"
-                    + "<td>" + String.format("%.2f", precoProdutos[i]) + "</td>"
-                    + "</tr>";
+                        + "<td>" + nomeProdutos[i] + "</td>"
+                        + "<td>&nbsp;&nbsp;</td>"
+                        + "<td>" + unidadeProdutos[i] + "</td>"
+                        + "<td>&nbsp;&nbsp;</td>"
+                        + "<td>" + String.format("%.2f", precoProdutos[i]) + "</td>"
+                        + "</tr>";
             }
         }
         LISTA += "</table><br>" //finaliza a tabela e adiciona instrução para retornar.
@@ -807,94 +945,25 @@ public class Principal {
             RETORNO = JOptionPane.showInputDialog(LISTA);
         } //caso o input seja "0" ou o usuário clique em Cancelar, o loop encerra e retorna para a tela 1.4.
     }
-    public static void ConsultaProduto() { //sub-rotina responsável pela tela de consulta de produto.
-        String NOVACONSULTA = "S"; //atribui "S" para que o loop inicie automaticamente.
-        while (NOVACONSULTA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas consultas.
-            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "CONSULTA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME:"
-                + "</div></html>"
-            );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "CONSULTA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br><br>"
-                + "PREÇO:"
-                + "</div></html>"
-            );
-            if (PRECOPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
-            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "CONSULTA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br>"
-                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
-                + "UNIDADE:"
-                + "</div></html>"
-            );
-            if (UNIDADE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "CONSULTA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br>"
-                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE  : " + UNIDADE + "<br><br>"
-                + "QUANTIDADE:"
-                + "</div></html>"
-            );
-            if (QTDEPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
-            NOVACONSULTA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova consulta.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "CONSULTA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME       : " + NOMEPRODUTO + "<br>"
-                + "PREÇO      : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE    : " + UNIDADE + "<br>"
-                + "QUANTIDADE : " + QTDEPRODUTO + "<br><br>"
-                + "NOVA CONSULTA (S/N)?:"
-                + "</div></html>"
-            );
-            if (NOVACONSULTA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-        } //caso o input seja "N", o loop encerra e retorna para a tela 1.1.
-    }
+
     public static int MenuRelatorios() { //sub-rotina responsável pelo menu de relatórios (tela 1.4).
         int MENUREL = -1; //atribui -1 para que o loop inicie e permita retorno correto ao menu principal.
         while (MENUREL != 0) { //enquanto o input não for 0, o loop mantém a tela de relatórios.
             String INPUT = JOptionPane.showInputDialog(
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "RELATÓRIOS"
-                + "</div><br>"
-                + "<div style='text-align: justify;'>"
-                + "1 - LISTA DE PREÇOS<br>"
-                + "2 - BALANÇO FÍSICO-FINANCEIRO<br>"
-                + "0 - RETORNAR<br><br>"
-                + "</div></html>"
+                    "<html><div style='text-align: center;'>"
+                    + "SEX ON THE BAR LTDA<br>"
+                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+                    + "RELATÓRIOS"
+                    + "</div><br>"
+                    + "<div style='text-align: justify;'>"
+                    + "1 - LISTA DE PREÇOS<br>"
+                    + "2 - BALANÇO FÍSICO-FINANCEIRO<br>"
+                    + "0 - RETORNAR<br><br>"
+                    + "</div></html>"
             );
-            if (INPUT == null) return 0; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            if (INPUT == null) {
+                return 0; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao menu principal.
+            }
             MENUREL = Integer.parseInt(INPUT);
             if (MENUREL == 1) { //caso o input seja 1, irá para a sub-rotina RelatorioListaPrecos (tela 1.4.1).
                 RelatorioListaPrecos();
