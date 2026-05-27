@@ -613,105 +613,96 @@ public class Principal {
             }
         } //caso o input seja "N" em novo reajuste, o loop encerra e retorna para a tela 1.0.
     }
-    public static void ExclusaoProduto() { //sub-rotina responsável pela tela de exclusão de produto.
-        String NOVAEXCLUSAO = "S"; //atribui "S" para que o loop inicie automaticamente.
-        while (NOVAEXCLUSAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas exclusões.
-            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME:"
-                + "</div></html>"
-            );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            String PRECOPRODUTOSTR = JOptionPane.showInputDialog( //segundo input: solicita o preço do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br><br>"
-                + "PREÇO:"
-                + "</div></html>"
-            );
-            if (PRECOPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            double PRECOPRODUTO = Double.parseDouble(PRECOPRODUTOSTR.replace(",", ".")); //converte a String do preço para double, aceitando vírgula ou ponto.
-            String UNIDADE = JOptionPane.showInputDialog( //terceiro input: solicita a unidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "SEX ON THE BAR LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br>"
-                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br><br>"
-                + "UNIDADE:"
-                + "</div></html>"
-            );
-            if (UNIDADE == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            String QTDEPRODUTOSTR = JOptionPane.showInputDialog( //quarto input: solicita a quantidade do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME     : " + NOMEPRODUTO + "<br>"
-                + "PREÇO    : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE  : " + UNIDADE + "<br><br>"
-                + "QUANTIDADE:"
-                + "</div></html>"
-            );
-            if (QTDEPRODUTOSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            int QTDEPRODUTO = Integer.parseInt(QTDEPRODUTOSTR); //converte a String da quantidade para inteiro.
-            String CONFIRMA = JOptionPane.showInputDialog( //quinto input: exibe o resumo e solicita confirmação da exclusão.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "EXCLUSÃO DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "NOME       : " + NOMEPRODUTO + "<br>"
-                + "PREÇO      : " + String.format("%.2f", PRECOPRODUTO) + "<br>"
-                + "UNIDADE    : " + UNIDADE + "<br>"
-                + "QUANTIDADE : " + QTDEPRODUTO + "<br><br>"
-                + "CONFIRMA EXCLUSÃO (S/N)?:"
-                + "</div></html>"
-            );
-            if (CONFIRMA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova exclusão.
-                NOVAEXCLUSAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova exclusão.
-                    "<html><div style='text-align: center;'>"
-                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "EXCLUSÃO DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "EXCLUSÃO CONFIRMADA COM SUCESSO!<br><br>"
-                    + "NOVA EXCLUSÃO (S/N)?:"
-                    + "</div></html>"
-                );
-                if (NOVAEXCLUSAO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
-            } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova exclusão.
-                NOVAEXCLUSAO = JOptionPane.showInputDialog( //sexto input: pergunta se deseja fazer uma nova exclusão.
-                    "<html><div style='text-align: center;'>"
-                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "EXCLUSÃO DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "EXCLUSÃO CANCELADA.<br><br>"
-                    + "NOVA EXCLUSÃO (S/N)?:"
-                    + "</div></html>"
-                );
-                if (NOVAEXCLUSAO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuCadastro.
+    public static void ExclusaoProduto() {
+
+    String NOVAEXCLUSAO = "S";
+
+    while (NOVAEXCLUSAO.equalsIgnoreCase("S")) {
+
+        String nomeBusca = JOptionPane.showInputDialog(
+                "Digite o nome do produto que deseja excluir:"
+        );
+
+        if (nomeBusca == null) return;
+
+        int indice = -1;
+
+        // procura o produto
+        for (int i = 0; i < totalProdutos; i++) {
+
+            if (nomeProdutos[i].equalsIgnoreCase(nomeBusca)) {
+
+                indice = i;
+                break;
             }
-        } //caso o input seja "N" em nova exclusão, o loop encerra e retorna para a tela 1.1.
+        }
+
+        // se não encontrou
+        if (indice == -1) {
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Produto não encontrado."
+            );
+
+        } else {
+
+            // mostra os dados
+            String confirma = JOptionPane.showInputDialog(
+
+                    "PRODUTO ENCONTRADO\n\n"
+
+                    + "Nome: " + nomeProdutos[indice]
+                    + "\nPreço: " + String.format("%.2f", precoProdutos[indice])
+                    + "\nUnidade: " + unidadeProdutos[indice]
+                    + "\nQuantidade: " + qtdeProdutos[indice]
+
+                    + "\n\nCONFIRMA EXCLUSÃO? (S/N)"
+            );
+
+            if (confirma == null) return;
+
+            if (confirma.equalsIgnoreCase("S")) {
+
+                // move os vetores
+                for (int i = indice; i < totalProdutos - 1; i++) {
+
+                    nomeProdutos[i] = nomeProdutos[i + 1];
+                    precoProdutos[i] = precoProdutos[i + 1];
+                    unidadeProdutos[i] = unidadeProdutos[i + 1];
+                    qtdeProdutos[i] = qtdeProdutos[i + 1];
+                }
+
+                // limpa última posição
+                nomeProdutos[totalProdutos - 1] = null;
+                precoProdutos[totalProdutos - 1] = 0;
+                unidadeProdutos[totalProdutos - 1] = null;
+                qtdeProdutos[totalProdutos - 1] = 0;
+
+                // reduz total
+                totalProdutos--;
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "PRODUTO EXCLUÍDO COM SUCESSO!"
+                );
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "EXCLUSÃO CANCELADA."
+                );
+            }
+        }
+
+        NOVAEXCLUSAO = JOptionPane.showInputDialog(
+                "NOVA EXCLUSÃO? (S/N)"
+        );
+
+        if (NOVAEXCLUSAO == null) return;
     }
+}
     public static void RelatorioBalanco() { //sub-rotina responsável pela tela de balanço físico-financeiro.
         String[][] PRODUTOS = { //tabela de produtos com nome, unidade, preço unitário e quantidade.
             {"AXXXXXXXXXXXXXXXXXX", "XXX", "9.99", "9"},
