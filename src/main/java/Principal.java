@@ -744,60 +744,141 @@ public class Principal {
         if (NOVAEXCLUSAO == null) return;
     }
 }
-    public static void RelatorioBalanco() { //sub-rotina responsável pela tela de balanço físico-financeiro.
-        String[][] PRODUTOS = { //tabela de produtos com nome, unidade, preço unitário e quantidade.
-            {"AXXXXXXXXXXXXXXXXXX", "XXX", "9.99", "9"},
-            {"BXXXXXXXXXXXXXXXXXX", "XXX", "9.99", "9"},
-            {"CXXXXXXXXXXXXXXXXXX", "XXX", "9.99", "9"},
-            {"DXXXXXXXXXXXXXXXXXX", "XXX", "9.99", "9"},
-            {"EXXXXXXXXXXXXXXXXXX", "XXX", "9.99", "9"}
-        };
-        int TOTALITENS = 0; //variável para acumular o total de itens no estoque.
-        double VALORTOTAL = 0; //variável para acumular o valor total do estoque.
-        String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "BALANÇO FÍSICO-FINANCEIRO<br><br>"
-                + "<table border='0'>"
-                + "<tr>"
-                + "<td><b>PRODUTO</b></td>"
+    public static void RelatorioBalanco() {
+
+    int TOTALITENS = 0;
+
+    double VALORTOTAL = 0;
+
+    String LISTA =
+            "<html><div style='text-align:left;'>"
+
+            + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
+            + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
+
+            + "BALANÇO FÍSICO-FINANCEIRO<br><br>"
+
+            + "<table border='0'>"
+
+            + "<tr>"
+
+            + "<td><b>PRODUTO</b></td>"
+            + "<td>&nbsp;&nbsp;</td>"
+
+            + "<td><b>UND</b></td>"
+            + "<td>&nbsp;&nbsp;</td>"
+
+            + "<td><b>PREÇO UNIT.</b></td>"
+            + "<td>&nbsp;&nbsp;</td>"
+
+            + "<td><b>QTDE</b></td>"
+            + "<td>&nbsp;&nbsp;</td>"
+
+            + "<td><b>TOTAL</b></td>"
+
+            + "</tr>";
+
+
+
+    // percorre produtos cadastrados
+    for(int i=0; i<totalProdutos; i++){
+
+        int quantidade =
+                qtdeProdutos[i];
+
+        double preco =
+                precoProdutos[i];
+
+        double valorProduto =
+                quantidade * preco;
+
+
+        TOTALITENS += quantidade;
+
+        VALORTOTAL += valorProduto;
+
+
+        LISTA +=
+
+                "<tr>"
+
+                + "<td>" + nomeProdutos[i] + "</td>"
+
                 + "<td>&nbsp;&nbsp;</td>"
-                + "<td><b>UND</b></td>"
+
+                + "<td>" + unidadeProdutos[i] + "</td>"
+
                 + "<td>&nbsp;&nbsp;</td>"
-                + "<td><b>PREÇO UNIT.</b></td>"
+
+                + "<td>"
+                + String.format("%.2f",preco)
+                + "</td>"
+
                 + "<td>&nbsp;&nbsp;</td>"
-                + "<td><b>QTDE</b></td>"
+
+                + "<td>"
+                + quantidade
+                + "</td>"
+
                 + "<td>&nbsp;&nbsp;</td>"
-                + "<td><b>PREÇO TOTAL</b></td>"
+
+                + "<td>"
+                + String.format("%.2f",valorProduto)
+                + "</td>"
+
                 + "</tr>";
-        for (String[] PRODUTO : PRODUTOS) { //percorre a tabela de produtos calculando os totais e montando as linhas da lista.
-            int QTDE = Integer.parseInt(PRODUTO[3]); //converte a quantidade para inteiro.
-            double PRECOUNIT = Double.parseDouble(PRODUTO[2]); //converte o preço unitário para double.
-            double PRECOTOTAL = QTDE * PRECOUNIT; //calcula o preço total do produto.
-            TOTALITENS += QTDE; //acumula o total de itens.
-            VALORTOTAL += PRECOTOTAL; //acumula o valor total.
-            LISTA += "<tr>"
-                + "<td>" + PRODUTO[0] + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + PRODUTO[1] + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + String.format("%.2f", PRECOUNIT) + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + QTDE + "</td>"
-                + "<td>&nbsp;&nbsp;</td>"
-                + "<td>" + String.format("%.2f", PRECOTOTAL) + "</td>"
-                + "</tr>";
-        }
-        LISTA += "</table><br>" //finaliza a tabela e adiciona o rodapé com os totais.
-                + "TOTAL DE ITENS NO ESTOQUE : " + TOTALITENS + "<br>"
-                + "VALOR TOTAL DO ESTOQUE    : " + String.format("%.2f", VALORTOTAL) + "<br><br>"
-                + "Digite 0 para retornar."
-                + "</div></html>";
-        String RETORNO = JOptionPane.showInputDialog(LISTA); //exibe a lista e aguarda o input do usuário para retornar.
-        while (RETORNO != null && !RETORNO.equals("0")) { //enquanto o input não for 0 e não for nulo (Cancelar), exibe a lista novamente.
-            RETORNO = JOptionPane.showInputDialog(LISTA);
-        } //caso o input seja "0" ou o usuário clique em Cancelar, o loop encerra e retorna para a tela 1.4.
     }
+
+
+    // caso não existam produtos
+    if(totalProdutos == 0){
+
+        LISTA +=
+
+                "<tr>"
+
+                + "<td colspan='9'>"
+
+                + "NENHUM PRODUTO CADASTRADO."
+
+                + "</td>"
+
+                + "</tr>";
+    }
+
+
+    LISTA +=
+
+            "</table><br>"
+
+            + "TOTAL DE ITENS: "
+
+            + TOTALITENS
+
+            + "<br>"
+
+            + "VALOR TOTAL ESTOQUE: "
+
+            + String.format("%.2f",VALORTOTAL)
+
+            + "<br><br>"
+
+            + "Digite 0 para retornar."
+
+            + "</div></html>";
+
+
+
+    String retorno =
+            JOptionPane.showInputDialog(LISTA);
+
+    while(retorno != null && !retorno.equals("0")){
+
+        retorno =
+                JOptionPane.showInputDialog(LISTA);
+    }
+
+}
     public static void RelatorioListaPrecos() { //sub-rotina responsável pela tela de lista de preços.
         String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
                 + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
