@@ -7,6 +7,8 @@ public class Principal {
     static String[] unidadeProdutos = new String[MAX_PRODUTOS]; //vetor de unidades dos produtos
     static int[] qtdeProdutos = new int[MAX_PRODUTOS]; //vetor de quantidades dos produtos
     static int totalProdutos = 0; //contador de produtos cadastrados
+    static double totalEntradasFinanceiras = 0;
+    static double totalSaidasFinanceiras = 0;
 
     public static void main(String[] args) {
         int MENUPP = -1; //atribui um valor á varivel -1 pra ela poder ser utilizada no loop (estou usando loop para a gente conseguir voltar para esse menu depois).
@@ -29,7 +31,7 @@ public class Principal {
     public static int MenuPrincipal() {
         String MENUPRINCIPAL = JOptionPane.showInputDialog(
                 "<html><div style='text-align: center;'>" //isso é só pra centralizar o texto usando html básico.
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>" //<br> se refere à *break* line, quebra de linha, que faz ir bra linha de baixo. É o mesmo que \n em java.
+                + "XYZ COMERCIO DE PRODUTOS LTDA<br>" //<br> se refere à break line, quebra de linha, que faz ir bra linha de baixo. É o mesmo que \n em java.
                 + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
                 + "MENU PRINCIPAL"
                 + "<div><br>" //o </div> significa que é o fim dos textos   
@@ -401,14 +403,29 @@ public class Principal {
 
             if(confirma.equalsIgnoreCase("S")){
 
-                qtdeProdutos[indice] =
-                        quantidadeFinal;
+    qtdeProdutos[indice] =
+            quantidadeFinal;
 
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Entrada realizada!"
-                );
-            }
+    double valorEntrada =
+            entrada *
+            precoProdutos[indice];
+
+    totalEntradasFinanceiras +=
+            valorEntrada;
+
+    JOptionPane.showMessageDialog(
+            null,
+
+            "Entrada realizada!"
+
+            + "\nValor movimentado: "
+
+            + String.format(
+                    "%.2f",
+                    valorEntrada
+            )
+    );
+}
 
         }
 
@@ -510,20 +527,35 @@ public class Principal {
 
             if (confirma.equalsIgnoreCase("S")) {
 
-                qtdeProdutos[indice] =
-                        quantidadeFinal;
+                if (confirma.equalsIgnoreCase("S")) {
 
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Saída realizada!"
-                );
+                    qtdeProdutos[indice]
+                            = quantidadeFinal;
 
-            } else {
+                    double valorSaida
+                            = saida
+                            * precoProdutos[indice];
 
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Saída cancelada."
-                );
+                    totalSaidasFinanceiras
+                            += valorSaida;
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Saída realizada!"
+                            + "\nValor movimentado: "
+                            + String.format(
+                                    "%.2f",
+                                    valorSaida
+                            )
+                    );
+
+                } else {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Saída cancelada."
+                    );
+                }
             }
         }
 
