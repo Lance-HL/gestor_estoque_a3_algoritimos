@@ -420,92 +420,121 @@ public class Principal {
         if(NOVAENTRADA == null) return;
     }
 }
-    public static void SaidaProduto() { //sub-rotina responsável pela tela de saída de produto.
-        String CONFIRMASAIDA = "S"; //atribui "S" para que o loop inicie automaticamente.
-        while (CONFIRMASAIDA.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas saídas.
-            String NOMEPRODUTO = JOptionPane.showInputDialog( //primeiro input: solicita o nome do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO:"
-                + "</div></html>"
-            );
-            if (NOMEPRODUTO == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
-            String QTDEATUALSTR = JOptionPane.showInputDialog( //segundo input: solicita a quantidade atual do produto.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br><br>"
-                + "QTDE ATUAL:"
-                + "</div></html>"
-            );
-            if (QTDEATUALSTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
-            int QTDEATUAL = Integer.parseInt(QTDEATUALSTR); //converte a String da quantidade atual para inteiro.
-            String QTDESAIDASTR = JOptionPane.showInputDialog( //terceiro input: solicita a quantidade de saída.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
-                + "QTDE ATUAL : " + QTDEATUAL + "<br><br>"
-                + "QTDE SAÍDA:"
-                + "</div></html>"
-            );
-            if (QTDESAIDASTR == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
-            int QTDESAIDA = Integer.parseInt(QTDESAIDASTR); //converte a String da quantidade de saída para inteiro.
-            int QTDEFINAL = QTDEATUAL - QTDESAIDA; //calcula a quantidade final subtraindo a saída da atual.
-            String CONFIRMA = JOptionPane.showInputDialog( //quarto input: exibe o resumo e solicita confirmação da saída.
-                "<html><div style='text-align: center;'>"
-                + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                + "</div><br><br>"
-                + "<div style='text-align: justify;'>"
-                + "PRODUTO    : " + NOMEPRODUTO + "<br>"
-                + "QTDE ATUAL : " + QTDEATUAL + "<br>"
-                + "QTDE SAÍDA : " + QTDESAIDA + "<br>"
-                + "QTDE FINAL : " + QTDEFINAL + "<br><br>"
-                + "CONFIRMA SAÍDA (S/N)?:"
-                + "</div></html>"
-            );
-            if (CONFIRMA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
-            if (CONFIRMA.equalsIgnoreCase("S")) { //caso o input seja "S", exibe mensagem de sucesso e pergunta se deseja nova saída.
-                CONFIRMASAIDA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova saída.
-                    "<html><div style='text-align: center;'>"
-                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "SAÍDA CONFIRMADA COM SUCESSO!<br><br>"
-                    + "NOVA SAÍDA (S/N)?:"
-                    + "</div></html>"
-                );
-                if (CONFIRMASAIDA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
-            } else { //caso o input seja "N", exibe mensagem de cancelamento e pergunta se deseja nova saída.
-                CONFIRMASAIDA = JOptionPane.showInputDialog( //quinto input: pergunta se deseja fazer uma nova saída.
-                    "<html><div style='text-align: center;'>"
-                    + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
-                    + "SISTEMA DE CONTROLE DE ESTOQUE<br><br>"
-                    + "MOVIMENTAÇÃO - SAÍDA DE PRODUTO"
-                    + "</div><br><br>"
-                    + "<div style='text-align: justify;'>"
-                    + "SAÍDA CANCELADA.<br><br>"
-                    + "NOVA SAÍDA (S/N)?:"
-                    + "</div></html>"
-                );
-                if (CONFIRMASAIDA == null) return; //se o usuário clicar em Cancelar ou fechar a janela, retorna ao MenuMovimentacao.
+    public static void SaidaProduto() {
+
+    String NOVASAIDA = "S";
+
+    while (NOVASAIDA.equalsIgnoreCase("S")) {
+
+        String nomeBusca = JOptionPane.showInputDialog(
+                "Digite o nome do produto:"
+        );
+
+        if (nomeBusca == null) return;
+
+        int indice = -1;
+
+        // procura produto
+        for (int i = 0; i < totalProdutos; i++) {
+
+            if (nomeProdutos[i].equalsIgnoreCase(nomeBusca)) {
+
+                indice = i;
+                break;
             }
-        } //caso o input seja "N" em nova saída, o loop encerra e retorna para a tela 1.2.
+        }
+
+        // produto não encontrado
+        if (indice == -1) {
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Produto não encontrado."
+            );
+
+        } else {
+
+            int quantidadeAtual =
+                    qtdeProdutos[indice];
+
+            String saidaStr =
+                    JOptionPane.showInputDialog(
+
+                    "Produto: "
+                    + nomeProdutos[indice]
+
+                    + "\nQuantidade atual: "
+                    + quantidadeAtual
+
+                    + "\n\nQuantidade de saída:"
+            );
+
+            if (saidaStr == null) return;
+
+            int saida =
+                    Integer.parseInt(saidaStr);
+
+            // verifica estoque
+            if (saida > quantidadeAtual) {
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Estoque insuficiente."
+                );
+
+                continue;
+            }
+
+            int quantidadeFinal =
+                    quantidadeAtual - saida;
+
+            String confirma =
+                    JOptionPane.showInputDialog(
+
+                    "Produto: "
+                    + nomeProdutos[indice]
+
+                    + "\nAtual: "
+                    + quantidadeAtual
+
+                    + "\nSaída: "
+                    + saida
+
+                    + "\nFinal: "
+                    + quantidadeFinal
+
+                    + "\n\nCONFIRMA SAÍDA? (S/N)"
+            );
+
+            if (confirma == null) return;
+
+            if (confirma.equalsIgnoreCase("S")) {
+
+                qtdeProdutos[indice] =
+                        quantidadeFinal;
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Saída realizada!"
+                );
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Saída cancelada."
+                );
+            }
+        }
+
+        NOVASAIDA =
+                JOptionPane.showInputDialog(
+                        "Nova saída? (S/N)"
+                );
+
+        if (NOVASAIDA == null) return;
     }
+}
     public static void ReajustePrecos() { //sub-rotina responsável pela tela de reajuste de preços.
         String NOVOREAJUSTE = "S"; //atribui "S" para que o loop inicie automaticamente.
         while (NOVOREAJUSTE.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novos reajustes.
