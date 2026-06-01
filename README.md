@@ -9,6 +9,7 @@ Cadastro de produtos, podendo incluir, alterar, consultar e excluir;\
 Gerenciamento da movimentação de produtos;\
 Reajuste de preços dos produtos;\
 Relatórios, incluindo lista de preços de todos os produtos e balanço financeiro.
+Desenvolvido com Apache Netbeans 29 e JDK 25.0.2
 ***
 # Participantes do projeto
 | Username  | Nome | RA |
