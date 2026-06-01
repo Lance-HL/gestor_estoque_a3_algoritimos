@@ -1,15 +1,11 @@
 <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" width="80"/>
 
 # Gestor de Estoque
+O Sistema de Gestão de Estoque foi desenvolvido para auxiliar no gerenciamento de produtos armazenados pela empresa. O sistema permite realizar o cadastro, consulta, alteração e exclusão de produtos, além de controlar as movimentações de entrada e saída de estoque.
 
-Este projeto tem como objetivo desenvolver um software programado em Java que possa ser utilizado para administrar estoques, sendo uma ferramenta que busca ajudar lojas e empresas a organizar e gerir seu estoque de produtos. 
+Cada produto possui informações como nome, preço unitário, unidade de medida e quantidade disponível. O sistema também oferece funcionalidades para reajuste de preços, geração de lista de preços e emissão de relatórios de balanço físico-financeiro, permitindo o acompanhamento do valor total do estoque e das movimentações realizadas.
 
-### O projeto possuirá as seguintes funções:
-Cadastro de produtos, podendo incluir, alterar, consultar e excluir;\
-Gerenciamento da movimentação de produtos;\
-Reajuste de preços dos produtos;\
-Relatórios, incluindo lista de preços de todos os produtos e balanço financeiro.
-Desenvolvido com Apache Netbeans 29 e JDK 25.0.2
+O projeto foi desenvolvido com Apache Netbeans 29 e JDK 25.0.2 utilizando a biblioteca Swing (JOptionPane) para a interface gráfica, com armazenamento dos dados em memória através de vetores.
 ***
 # Participantes do projeto
 | Username  | Nome | RA |
