@@ -28,6 +28,12 @@ public class Principal {
             }
         }
     }
+    /**
+ * Exibe o menu principal do sistema e retorna a opção escolhida pelo usuário.
+ *
+ * @return opção selecionada no menu principal. Retorna 0 caso o usuário
+ *         cancele ou feche a janela.
+ */
     public static int MenuPrincipal() {
         String MENUPRINCIPAL = JOptionPane.showInputDialog(
                 "<html><div style='text-align: center;'>" //isso é só pra centralizar o texto usando html básico.
@@ -46,6 +52,13 @@ public class Principal {
         if (MENUPRINCIPAL == null) return 0; //se o usuário clicar em Cancelar ou fechar a janela, encerra o programa retornando 0.
         return Integer.parseInt(MENUPRINCIPAL); //devolve o valor em Int da String MENUPRINCIPAL para que abra possibilidade pra um novo redirecionamento.
     }
+    /**
+ * Exibe o menu de cadastro de produtos e direciona para as rotinas
+ * de inclusão, alteração, consulta ou exclusão.
+ *
+ * @return opção selecionada no menu de cadastro. Retorna 0 para voltar
+ *         ao menu principal.
+ */
     public static int MenuCadastro() {
         int MENUCADASTRO = -1; //atribui -1 para que o loop inicie e permita retorno correto ao menu principal.
         while (MENUCADASTRO != 0) { //enquanto o input não for 0, o loop mantém a tela de cadastro.
@@ -80,6 +93,13 @@ public class Principal {
         }
         return MENUCADASTRO; //retorna 0 para voltar ao menu principal.
     }
+    /**
+ * Exibe o menu de movimentação de estoque, permitindo registrar
+ * entradas e saídas de produtos.
+ *
+ * @return opção selecionada no menu de movimentação. Retorna 0 para
+ *         voltar ao menu principal.
+ */
     public static int MenuMovimentacao() {
         int MENUMOV = -1; //atribui -1 para que o loop inicie e permita retorno correto ao menu principal.
         while (MENUMOV != 0) { //enquanto o input não for 0, o loop mantém a tela de movimentação.
@@ -106,6 +126,11 @@ public class Principal {
         }
         return MENUMOV; //retorna 0 para voltar ao menu principal.
     }
+    /**
+ * Realiza o cadastro de novos produtos no sistema.
+ * Solicita nome, preço, unidade de medida e quantidade inicial,
+ * armazenando os dados nos vetores de produtos.
+ */
     public static void InclusaoProduto() { //sub-rotina responsável pela tela de inclusão de produto (tela 1.1.1).
         String NOVAALTERACAO = "S"; //atribui "S" para que o loop inicie automaticamente.
         while (NOVAALTERACAO.equalsIgnoreCase("S")) { //enquanto o input for "S", o loop continua permitindo novas inclusões ou alterações.
@@ -222,6 +247,11 @@ public class Principal {
             }
         } //caso o input seja "N" em nova alteração, o loop encerra e retorna para a tela 1.1 (MenuCadastro).
     }
+    /**
+ * Permite alterar os dados de um produto previamente cadastrado.
+ * O usuário informa o nome do produto e pode modificar preço,
+ * unidade de medida e quantidade.
+ */
    public static void AlteracaoProduto() {
 
     String NOVAALTERACAO = "S";
@@ -324,6 +354,11 @@ public class Principal {
         if (NOVAALTERACAO == null) return;
     }
 }
+   /**
+ * Registra entradas de produtos no estoque.
+ * Atualiza a quantidade disponível e acumula o valor financeiro
+ * correspondente às entradas realizadas.
+ */
     public static void EntradaProduto() {
 
     String NOVAENTRADA = "S";
@@ -437,6 +472,11 @@ public class Principal {
         if(NOVAENTRADA == null) return;
     }
 }
+    /**
+ * Registra saídas de produtos do estoque.
+ * Atualiza a quantidade disponível e acumula o valor financeiro
+ * correspondente às saídas realizadas.
+ */
     public static void SaidaProduto() {
 
     String NOVASAIDA = "S";
@@ -567,6 +607,11 @@ public class Principal {
         if (NOVASAIDA == null) return;
     }
 }
+    /**
+ * Aplica reajustes de preços aos produtos cadastrados.
+ * Permite reajuste geral para todos os produtos ou reajuste
+ * individual para um produto específico.
+ */
     public static void ReajustePrecos() {
 
     String NOVOREAJUSTE = "S";
@@ -729,6 +774,11 @@ public class Principal {
         if (NOVOREAJUSTE == null) return;
     }
 }
+    /**
+ * Exclui um produto cadastrado no sistema.
+ * Após a confirmação do usuário, remove o produto dos vetores
+ * e reorganiza os registros existentes.
+ */
     public static void ExclusaoProduto() {
 
     String NOVAEXCLUSAO = "S";
@@ -819,6 +869,11 @@ public class Principal {
         if (NOVAEXCLUSAO == null) return;
     }
 }
+    /**
+ * Gera e exibe o relatório de balanço físico-financeiro do estoque.
+ * Apresenta quantidade total de itens, valor total do estoque e
+ * detalhamento dos produtos cadastrados.
+ */
     public static void RelatorioBalanco() {
 
     int TOTALITENS = 0;
@@ -954,6 +1009,11 @@ public class Principal {
     }
 
 }
+    /**
+ * Gera e exibe a lista de preços dos produtos cadastrados.
+ * O relatório apresenta nome do produto, unidade de medida
+ * e preço unitário.
+ */
     public static void RelatorioListaPrecos() { //sub-rotina responsável pela tela de lista de preços.
         String LISTA = "<html><div style='text-align: left;'>" //inicia a montagem da lista em html.
                 + "XYZ COMERCIO DE PRODUTOS LTDA<br>"
@@ -988,6 +1048,11 @@ public class Principal {
             RETORNO = JOptionPane.showInputDialog(LISTA);
         } //caso o input seja "0" ou o usuário clique em Cancelar, o loop encerra e retorna para a tela 1.4.
     }
+    /**
+ * Realiza a consulta de um produto cadastrado.
+ * Exibe as informações do produto caso ele seja encontrado
+ * no cadastro.
+ */
     public static void ConsultaProduto() {
 
         String nomeBusca = JOptionPane.showInputDialog(
@@ -1023,6 +1088,13 @@ public class Principal {
             );
         }
     }
+    /**
+ * Exibe o menu de relatórios do sistema.
+ * Permite acessar a lista de preços e o balanço físico-financeiro.
+ *
+ * @return opção selecionada no menu de relatórios. Retorna 0 para
+ *         voltar ao menu principal.
+ */
     public static int MenuRelatorios() { //sub-rotina responsável pelo menu de relatórios (tela 1.4).
         int MENUREL = -1; //atribui -1 para que o loop inicie e permita retorno correto ao menu principal.
         while (MENUREL != 0) { //enquanto o input não for 0, o loop mantém a tela de relatórios.
